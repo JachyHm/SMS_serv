@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activation">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Activation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activities">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Activities.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Channels">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Discovery">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Discovery.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Duplex">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Duplex.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Http">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.NetTcp">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.NetTcp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Primitives">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Routing">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Security">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.ServiceMoniker40">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.ServiceMoniker40.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.WasHosting">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.WasHosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
