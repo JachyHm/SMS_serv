@@ -5,10 +5,18 @@
 HANDLE hSerial;
 DCB dcbSerialParams = { 0 };
 COMMTIMEOUTS timeouts = { 0 };
+char recBuffer[10];
+
+void append(char *str, char c)
+{
+	for (; *str; str++);
+	*str++ = c;
+	*str++ = 0;
+}
 
 int initCOM(HANDLE *hSerial, char *comName)
 {
-	// Otevri nejvyssi dostupny COM
+	// Otevri zadany COM
 	fprintf(stderr, "Oteviram seriovy port %s...", comName);
 	*hSerial = CreateFile(
 		comName, GENERIC_READ | GENERIC_WRITE, 0, NULL,
@@ -31,7 +39,7 @@ int initCOM(HANDLE *hSerial, char *comName)
 	}
 
 	fprintf(stderr, "Nastavuji parametry zarizeni...");
-	dcbSerialParams.BaudRate = CBR_57600;
+	dcbSerialParams.BaudRate = CBR_115200;
 	dcbSerialParams.ByteSize = 8;
 	dcbSerialParams.StopBits = ONESTOPBIT;
 	dcbSerialParams.Parity = NOPARITY;
@@ -60,13 +68,19 @@ int initCOM(HANDLE *hSerial, char *comName)
 	return 0;
 };
 
-void sendMessage(HANDLE *hSerial, char *messageToSend)
+void sendCommand(HANDLE *hSerial, char *messageToSend, char *receivedMessage)
 {
-	// Posli text
+	// Vytvor DWORD bytes_written - pocet odeslanych bytr
 	DWORD bytes_written = 0;
-	fprintf(stderr, "Posilam zpravu %s o delce %d byty...\n", messageToSend, strlen(messageToSend));
 
-	if (!WriteFile(*hSerial, &messageToSend, strlen(messageToSend), &bytes_written, NULL))
+	//Vypis
+	fprintf(stderr, "Posilam zpravu %s o delce %d byte...\n", messageToSend, strlen(messageToSend));
+
+	//Pridej na konec zpravy CR
+	append(messageToSend, '\r');
+
+	//Posli zpravu o delce strlen
+	if (!WriteFile(*hSerial, messageToSend, strlen(messageToSend), &bytes_written, NULL))
 	{
 		fprintf(stderr, "Chyba!\n"); 
 		short Errorcode = GetLastError();
@@ -75,7 +89,57 @@ void sendMessage(HANDLE *hSerial, char *messageToSend)
 	}
 	else fprintf(stderr, "Zapsano %d bytu\n", bytes_written);
 
-	Sleep(100);
+	//Vytvor DWORD bytes_read - pocet prijatych byte
+	DWORD bytes_read = 0;
+
+	//Vypis
+	fprintf(stderr, "Cekam na odpoved...");
+
+	//Definuj int gotResponse - jestli uz byly prijate data
+	int gotResponse = FALSE;
+
+	while (TRUE)
+	{
+		//nuluj pocet prijatych byte
+		bytes_read = 0;
+
+		//precti 1 bajt
+		if (ReadFile(*hSerial, recBuffer, 1, &bytes_read, NULL))
+		{
+			//pokud byla prijata nejaka data
+			if (bytes_read > 0)
+			{
+				//a jsou prvni
+				if (!gotResponse) {
+					strcpy_s(receivedMessage, 1024, recBuffer);
+				}
+				//a uz byla prijata nejaka predtim
+				else
+				{
+					strcat_s(receivedMessage, 1024, recBuffer);
+				}
+				//zapis, ze byla prectena data
+				gotResponse = TRUE;
+			}
+			//pokud je prazdny buffer, ale prijali jsme data, ukonci cteni
+			else if (gotResponse)
+			{
+				break;
+			}
+		}
+		//chyba
+		else
+		{
+			fprintf(stderr, "Chyba!\n");
+			short Errorcode = GetLastError();
+			fprintf(stderr, "Error: %d\n", Errorcode);
+			return 1;
+		}
+	}
+
+	fprintf(stderr, "OK\n");
+	
+	fprintf(stderr, "Precteno %d byte\n", strlen(receivedMessage));
 }
 
 void deinitCOM(HANDLE * hSerial)
@@ -93,18 +157,36 @@ void deinitCOM(HANDLE * hSerial)
 	return 0;
 }
 
+void sendSMS(const char* telNum, const char* mess) 
+{
+	char recMess[1024];
+	memset(recMess, 0, 1024);
+	const char txtModAtCommand[20] = "AT+CMGF=1";
+	sendCommand(&hSerial, txtModAtCommand, &recMess);
+	char *ptr = strstr(recMess, "\n");
+	fprintf(stderr, ptr);
+	memset(recMess, 0, 1024);
+	char *recipientAtCommand = malloc(100 * sizeof(char));
+	strcpy_s(recipientAtCommand, 100, "AT+CMGS=\"");
+	strcat_s(recipientAtCommand, 100, telNum);
+	strcat_s(recipientAtCommand, 100, "\"");
+	sendCommand(&hSerial, recipientAtCommand, &recMess);
+	*ptr = strstr(recMess, "\n");
+	fprintf(stderr, ptr);
+	memset(recMess, 0, 1024);
+	sendCommand(&hSerial, mess, &recMess);
+	*ptr = strstr(recMess, "\n");
+	fprintf(stderr, ptr);
+}
+
 void main()
 {
-	char com[5] = "COM1";
+	char com[5] = "COM9";
 	if (!initCOM(&hSerial, &com)) {
-		char zprava[50] = "AT+CMGF=1";
-		sendMessage(&hSerial, &zprava);
-		char zprava1[50] = "AT+CMGW=\"+420728346650\"";
-		sendMessage(&hSerial, &zprava1);
-		char zprava2[50] = "Achoj Vobo!";
-		sendMessage(&hSerial, &zprava2);
-		char zprava3[50] = "AT+CMSS=1";
-		sendMessage(&hSerial, &zprava3);
+
+		char number[50] = "00420725245545";
+		char message[200] = "Ahoj Babi 2!\x1A";
+		sendSMS(number, message);
 		Sleep(1000);
 		deinitCOM(&hSerial);
 	}
