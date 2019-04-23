@@ -3,9 +3,49 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <OutputPath>bin\x86\Debug\netcoreapp2.0\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <OutputPath>bin\x86\Debug\netcoreapp2.0\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>true</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ini-parser" Version="2.5.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NETCore" Version="5.0.2" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="System.IO.Ports" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel">
       <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.ServiceModel.dll</HintPath>
     </Reference>
