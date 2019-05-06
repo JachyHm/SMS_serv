@@ -496,7 +496,7 @@ namespace SMS_server
                         File.WriteAllBytes(fname + ".md5", nhash);
                         if (clanky.Count > 0)
                         {
-                            //SendSMSs(clanky);
+                            SendSMSs(clanky);
                         }
                     }
                     else
@@ -512,7 +512,7 @@ namespace SMS_server
                     File.WriteAllBytes(fname + ".md5", nhash);
                     if (clanky.Count > 0)
                     {
-                        //SendSMSs(clanky);
+                        SendSMSs(clanky);
                     }
                 }
             }
@@ -562,16 +562,8 @@ namespace SMS_server
                 //Regex.Replace(obsah, "<[^>]*(>|$)", string.Empty)
                 obsah = HtmlUtilities.ConvertToPlainText(obsah);
                 obsah = obsah.Replace("Attachments:", string.Empty).Replace("Body:", string.Empty);
-                Log(obsah);
                 string link = XMLclanek.GetElementsByTagName("link")[0].InnerText;
                 string datum = XMLclanek.GetElementsByTagName("pubDate")[0].InnerText;
-                /*Console.WriteLine("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*");
-                Console.WriteLine("Název: " + nazev);
-                Console.WriteLine("Autor: " + autor);
-                Console.WriteLine("Obsah: " + obsah);
-                Console.WriteLine("Odkaz: " + link);
-                Console.WriteLine("Datum: " + datum);
-                Console.WriteLine("");*/
                 if (!string.IsNullOrEmpty(GetChecksumForID(Convert.ToInt32(id))))
                 {
                     if (CalcMD5(obsah) == GetChecksumForID(Convert.ToInt32(id)))
