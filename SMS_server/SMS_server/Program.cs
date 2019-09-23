@@ -18,6 +18,9 @@ using System.Text;
 using System.Data.SQLite;
 using HtmlAgilityPack;
 using System.Net;
+using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Data;
 /*using System.ServiceModel;
 using System.ServiceModel.Syndication;*/
 
@@ -131,7 +134,11 @@ namespace SMS_server
     {
         static string feedFName;                                                                //nazev souboru s feedem
 
-        static string telNum;                                                                   //nazev souboru s telCislama
+        static string teachersFeedFName;                                                        //nazev souboru s feedem ucitelu
+
+        static string telNum_fname;                                                             //nazev souboru s telCislama
+
+        static string telNumTeacher_fname;                                                      //nazev souboru s telCislama ucitelu
 
         static string comPort;                                                                  //COM port
 
@@ -183,8 +190,8 @@ namespace SMS_server
                 }
             }
             //pokud dojde az sem na zadnem COM neni AT, pockej na user response a rekurzivne zavolej sam sebe
-            Log("AT server is not connected to computer! Please connect it and press any key to retry!", false, true);
-            Console.ReadKey();
+            Log("AT server is not connected to computer!", false, true, true); // Please connect it and press any key to retry!
+            //Console.ReadKey();
             GetATCOM();
         }
 
@@ -203,8 +210,8 @@ namespace SMS_server
                 portHandler.Close();                                //zavri COM
                 if (!messageReaded.Contains("AT\r\r\nOK\r\n"))      //pokud neni odpoved 'AT OK', neco je spatne, pockej na user response a rekurzivne se zavolej
                 {
-                    Log(String.Format("AT server was disconnected or failed, because response is \"{0}\"! Please connect it and press any key to continue!", messageReaded.Replace("\r", "")), false, true);
-                    Console.ReadKey();
+                    Log(String.Format("AT server was disconnected or failed, because response is \"{0}\"!", messageReaded.Replace("\r", "")), false, true, true);
+                    //Console.ReadKey();
                     GetATCOM();
                     CheckForATonCOM(comPort);
                 }
@@ -215,8 +222,8 @@ namespace SMS_server
             }
             catch                                                   //pokud selze nektery z kroku vyse, COM se nepovedlo otevrit,
             {                                                       //pockej na user response a zavolej GetATCOM()
-                Log("AT was disconnected! Please connect it and press any key to continue!", false, true);
-                Console.ReadKey();
+                Log("AT was disconnected!", false, true, true);
+                //Console.ReadKey();
                 GetATCOM();
                 //CheckForATonCOM(comPort);
             }
@@ -226,7 +233,7 @@ namespace SMS_server
         {
             SQLiteCommand command = new SQLiteCommand(sqlite_conn)
             {
-                CommandText = "CREATE TABLE clanky (id INT UNIQUE, content TEXT, chcksum VARCHAR(32))"
+                CommandText = "CREATE TABLE newArticles (id INT UNIQUE, content TEXT, chcksum VARCHAR(32))"
             };
             command.ExecuteNonQuery();
             command.Dispose();
@@ -237,7 +244,7 @@ namespace SMS_server
         {
             SQLiteCommand command = new SQLiteCommand(sqlite_conn)
             {
-                CommandText = String.Format("SELECT chcksum FROM clanky WHERE id={0}", id)
+                CommandText = String.Format("SELECT chcksum FROM newArticles WHERE id={0}", id)
             };
             string chcksum = Convert.ToString(command.ExecuteScalar());
             command.Dispose();
@@ -248,31 +255,52 @@ namespace SMS_server
         {
             SQLiteCommand command = new SQLiteCommand(sqlite_conn)
             {
-                CommandText = String.Format("SELECT content FROM clanky WHERE id={0}", id)
+                CommandText = String.Format("SELECT content FROM newArticles WHERE id={0}", id)
             };
             string content = Convert.ToString(command.ExecuteScalar());
             command.Dispose();
             return (content);
         }
 
-        private static void SetValuesForID(int id, string content, string checksum)             //funkce zapisuje clanek do tabulky
+        private static void SetValuesForID(int id, string content, string checksum)             //funkce zapisuje article do tabulky
         {
             Log(String.Format("Setting new values for article {0}! Checksum: \"{1}\".", id, checksum));
             SQLiteCommand command = new SQLiteCommand(sqlite_conn)
             {
-                CommandText = String.Format("REPLACE INTO clanky (id, content, chcksum) VALUES ({0}, '{1}', '{2}'); ", id, content, checksum)
+                CommandText = "REPLACE INTO newArticles (id, content, chcksum) VALUES (@id, @content, @chcksum);"
             };
+            command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("content", content);
+            command.Parameters.AddWithValue("chcksum", checksum);
             command.ExecuteNonQuery();
             command.Dispose();
         }
 
-        static void Log(string message, bool blockDateTime = false, bool forceVerbose = false)  //logovaci Fce
+        static void Log(string message, bool blockDateTime = false, bool forceVerbose = false, bool criticalLog = false)  //logovaci Fce
         {            //[telo zpravy;    blokovani zapisu dateTimu;  nuceny vypis zpravy do konzole]
+            DateTime dateTimeNow = DateTime.Now;
+            if (File.Exists(@"sms.log"))
+            {
+                string lastLine = File.ReadLines(@"sms.log").Last();
+                if (lastLine.Contains("["))
+                {
+                    if (dateTimeNow.ToString("[yyyy.MM.dd", CultureInfo.InvariantCulture) != lastLine.Substring(0, 11))
+                    {
+                        try
+                        {
+                            System.IO.File.Move(@"sms.log", String.Format(@"sms_{0}.log", lastLine.Substring(1, 10).Replace('.', '_')));
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+            }
             string dateTimeString = String.Empty;                   //definuj datetime string
             if (!blockDateTime)                                     //pokud neni blokovany zapis datetime
-            {
-                DateTime dateTimeNow = DateTime.Now;                //definuj promennou dateTime jako aktualni cas a zformatuj ji 
-                dateTimeString = dateTimeNow.ToString("[MM.dd.yyyy HH:mm:ss.fff]:", CultureInfo.InvariantCulture);
+            {              //definuj promennou dateTime jako aktualni cas a zformatuj ji 
+                dateTimeString = dateTimeNow.ToString("[yyyy.MM.dd HH:mm:ss.fff]:", CultureInfo.InvariantCulture);
             }
             using (StreamWriter fs = File.AppendText(@"sms.log"))   //otevri soubor sms.log pro appendovani jako fs
             {
@@ -280,6 +308,13 @@ namespace SMS_server
                 if (verbose || forceVerbose)                        //pokud je zapnute logovani, a/nebo se zprava loguje vzdy
                 {
                     Console.WriteLine(dateTimeString + message);    //zapis ji jeste do konzole
+                }
+            }
+            if (criticalLog)
+            {
+                using (StreamWriter critical_fs = File.AppendText(@"critical_log.log"))   //otevri soubor sms.log pro appendovani jako fs
+                {
+                    critical_fs.WriteLine(dateTimeString + message);    //zapis do logu dateTimeString a zpravu
                 }
             }
         }
@@ -320,128 +355,186 @@ namespace SMS_server
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
-        static void SendSMSs(List<string[]> noveClanky)                                         //vygeneruje a posle SMS s zadanymi clanky
+        static void SendSMSs(List<string[]> newArticles, Boolean isTeacher)                     //vygeneruje a posle SMS s zadanymi newArticles
         {
-            if (File.Exists(telNum))
+            if ((File.Exists(telNum_fname) && ! isTeacher) || (File.Exists(telNumTeacher_fname) && isTeacher))
             {
                 Log("List of phone numbers exists! Parsing...");
-                string teleText = File.ReadAllText(telNum);
-                string[] cisla = teleText.Split('\n');
-                if (cisla.Length > 0 && !string.IsNullOrEmpty(teleText))
+                string telNum_content;
+                if (isTeacher)
                 {
-                    Log("List of phone numbers contains " + cisla.Length + " phone numbers!");
+                    telNum_content = File.ReadAllText(telNumTeacher_fname);
+                }
+                else
+                {
+                    telNum_content = File.ReadAllText(telNum_fname);
+                }
+                string[] telNum_lines = telNum_content.Split('\n');
+                if (telNum_lines.Length > 0 && !string.IsNullOrEmpty(telNum_content))
+                {
+                    string whoString;
+                    if (isTeacher)
+                    {
+                        whoString = "teachers";
+                    } 
+                    else
+                    {
+                        whoString = "students";
+                    }
+                    Log(String.Format("List of {0} phone numbers contains {1} phone numbers!", whoString, telNum_lines.Length));
                     SerialPort portHandler = new System.IO.Ports.SerialPort(
                         comPort, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
                     portHandler.WriteTimeout = 500;
                     portHandler.Open();
-                    Log("STARTING SMS SENDING JOB!");
+                    Log(String.Format("STARTING SMS SENDING JOB FOR {0}!", whoString.ToUpper()));
                     Log("Setting message format!");
                     portHandler.Write("AT+CMGF=1\r");
-                    while (portHandler.BytesToRead == 0) ;
+                    while(portHandler.BytesToRead == 0);
                     string[] response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
-                    if (response[2] == "OK")
+                    if (response.Length > 2)
                     {
-                        Log("Message format succesfully set!");
-                        portHandler.Write("AT+CSCS=\"8859-1\"\r");
-                        while (portHandler.BytesToRead == 0) ;
-                        response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
                         if (response[2] == "OK")
                         {
-                            Log("Encoding succesfully set!");
-                            foreach (string cislo_name in cisla)
+                            Log("Message format succesfully set!");
+                            portHandler.Write("AT+CSCS=\"8859-1\"\r");
+                            while (portHandler.BytesToRead == 0) ;
+                            response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
+                            if (response.Length > 2)
                             {
-                                string recipient_name = cislo_name.Split(';')[1];
-                                string cislo = cislo_name.Split(';')[0];
-                                string cislo_trimmed = cislo.Replace("\n", "").Replace("\r", "");
-                                if (!string.IsNullOrEmpty(cislo_trimmed))
+                                if (response[2] == "OK")
                                 {
-                                    Int64 telNum = Convert.ToInt64(cislo);
-                                    if (telNum > 420000000000 && telNum <= 420999999999)
+                                    Log("Encoding succesfully set!");
+                                    int currentLine = 1;
+                                    foreach (string telNum_line in telNum_lines)
                                     {
-                                        Log(String.Format("STARTING JOB FOR NUMBER {0} - {1}!", cislo_trimmed, recipient_name));
-                                        foreach (string[] clanek in noveClanky)
+                                        if (!string.IsNullOrEmpty(telNum_line) && !string.IsNullOrWhiteSpace(telNum_line) && telNum_line.Length > 1)
                                         {
-                                            Log(String.Format("Setting recipient number to {0} - {1}!", cislo_trimmed, recipient_name));
-                                            string header = "Nove oznameni od ";
-                                            if (clanek[6] == "edit")
+                                            string recipient_name = telNum_line.Split(';')[1].Replace("\n", "").Replace("\r", "").Trim();
+                                            string telNum_asString = telNum_line.Split(';')[0].Replace("\n", "").Replace("\r", "").Trim();
+                                            string telNum_asStringTrimmed = telNum_asString.Replace("\n", "").Replace("\r", "").Trim();
+                                            if (!string.IsNullOrEmpty(telNum_asStringTrimmed))
                                             {
-                                                header = "Upravene oznameni ";
-                                            }
-                                            string teloZpravy = RemoveDiacritics(header + clanek[2] + ": " + clanek[1] + "\n" + clanek[3] + "\n" + clanek[4]);
-                                            portHandler.Write(String.Format("AT+CMGS=\"{0}\"\r", cislo_trimmed));
-                                            int ch = 0;
-                                            string buff = "";
-                                            Log("Request sent! Waiting for confirming 0x3E char!");
-                                            while (ch != 0x3E)
-                                            {
-                                                ch = portHandler.ReadChar();
-                                                buff += ch.ToString();
-                                                if (buff.Contains("ERROR"))
+                                                Int64 telNum = Convert.ToInt64(telNum_asString);
+                                                if (telNum > 420000000000 && telNum <= 420999999999)
                                                 {
-                                                    break;
+                                                    Log(String.Format("STARTING JOB FOR NUMBER {0} - {1}!", telNum_asStringTrimmed, recipient_name));
+                                                    foreach (string[] article in newArticles)
+                                                    {
+                                                        Log(String.Format("Setting recipient number to {0} - {1}!", telNum_asStringTrimmed, recipient_name));
+                                                        string title;
+                                                        if (isTeacher)
+                                                        {
+                                                            title = "SBOROVNA";
+                                                        }
+                                                        else
+                                                        {
+                                                            title = "INTRANET";
+                                                        }
+                                                        string header = String.Format("Nove oznameni {0} od ", title);
+                                                        if (article[6] == "EDIT")
+                                                        {
+                                                            header = String.Format("Upravene oznameni {0} od ", title);
+                                                        }
+                                                        string teloZpravy = RemoveDiacritics(header + article[2] + ": " + article[1] + "\n" + article[3] + "\n" + article[4]);
+                                                        portHandler.Write(String.Format("AT+CMGS=\"{0}\"\r", telNum_asStringTrimmed));
+                                                        int ch = 0;
+                                                        string buff = "";
+                                                        Log("Request sent! Waiting for confirming 0x3E char!");
+                                                        while (ch != 0x3E)
+                                                        {
+                                                            ch = portHandler.ReadChar();
+                                                            buff += ch.ToString();
+                                                            if (buff.Contains("ERROR"))
+                                                            {
+                                                                break;
+                                                            }
+                                                        }
+                                                        if (buff.Contains("ERROR"))
+                                                        {
+                                                            Log(String.Format("Unable to initialise carrier!"));
+                                                            System.Threading.Thread.Sleep(1000);
+                                                            continue;
+                                                        }
+                                                        Log("Setting recipient number succesfull!");
+                                                        Log("Sending message body!");
+                                                        portHandler.Write(String.Format("{0}\x1A\r", teloZpravy));
+                                                        //System.IO.File.WriteAllText(String.Format(@"{0}.txt",article[0]), teloZpravy);
+                                                        while (portHandler.BytesToRead < teloZpravy.Length) System.Threading.Thread.Sleep(500); ;
+                                                        string response_body = portHandler.ReadExisting().Replace("\n", "");
+                                                        //response = response_wp.Split('\r');
+                                                        if (response_body.Contains("ERROR"))
+                                                        {
+                                                            //portHandler.Write("AT+CMEE=2\r");
+                                                            //while (portHandler.BytesToRead == 0) ;
+                                                            //portHandler.DiscardInBuffer();
+                                                            Log(String.Format("AT server returned ERROR state while sending message body! Skipping message!"));
+                                                            System.Threading.Thread.Sleep(1000);
+                                                            continue;
+                                                        }
+                                                        Log("Sending message body succesfull! Waiting for SMS to send!");
+                                                        while (portHandler.BytesToRead == 0) System.Threading.Thread.Sleep(500); ;
+                                                        System.Threading.Thread.Sleep(500);
+                                                        response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
+                                                        if (response.Length < 2)
+                                                        {
+                                                            Log(String.Format("SMS was probably not send, because response is unknown: {0}", response[0]));
+                                                        }
+                                                        if (response[1].Contains("ME"))
+                                                        {
+                                                            Log("SMS was sent to server itself! Critical stop!");
+                                                            while (portHandler.BytesToRead == 0) System.Threading.Thread.Sleep(500); ;
+                                                            System.Threading.Thread.Sleep(500);
+                                                            portHandler.DiscardInBuffer();
+                                                        }
+                                                        else if (response[3].Contains("OK"))
+                                                        {
+                                                            Log(String.Format("SMS to number {0} - {1} succesfully sent!", telNum_asStringTrimmed, recipient_name));
+                                                        }
+                                                        else
+                                                        {
+                                                            Log(String.Format("Sending SMS to number {0} - {1} failed!", telNum_asStringTrimmed, recipient_name));
+                                                        }
+                                                    }
+                                                    Log(String.Format("JOB FOR NUMBER {0} - {1} COMPLETED!", telNum_asStringTrimmed, recipient_name));
                                                 }
-                                            }
-                                            if (buff.Contains("ERROR"))
-                                            {
-                                                Log(String.Format("Unable to initialise carrier!"));
-                                                System.Threading.Thread.Sleep(1000);
-                                                continue;
-                                            }
-                                            Log("Setting recipient number succesfull!");
-                                            Log("Sending message body!");
-                                            portHandler.Write(String.Format("{0}\x1A\r", teloZpravy));
-                                            while (portHandler.BytesToRead < teloZpravy.Length) ;
-                                            response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
-                                            if (response[1] == "ERROR")
-                                            {
-                                                Log(String.Format("Unable to initialise carrier!"));
-                                                System.Threading.Thread.Sleep(1000);
-                                                continue;
-                                            }
-                                            Log("Sending message body succesfull! Waiting for SMS to send!");
-                                            while (portHandler.BytesToRead == 0) ;
-                                            System.Threading.Thread.Sleep(500);
-                                            response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
-                                            if (response[1].Contains("ME"))
-                                            {
-                                                Log("SMS was sent to server itself! Critical stop!");
-                                                while (portHandler.BytesToRead == 0) ;
-                                                System.Threading.Thread.Sleep(500);
-                                                portHandler.DiscardInBuffer();
-                                            }
-                                            else if (response[3].Contains("OK"))
-                                            {
-                                                Log(String.Format("SMS to number {0} - {1} succesfully sent!", cislo_trimmed, recipient_name));
+                                                else
+                                                {
+                                                    Log("\"" + telNum_asStringTrimmed + "\" is not valid phone number in format 00420abcdefghi!");
+                                                }
                                             }
                                             else
                                             {
-                                                Log(String.Format("Sending SMS to number {0} - {1} failed!", cislo_trimmed, recipient_name));
+                                                Log("\"" + telNum_asStringTrimmed + "\" is not valid phone number in format 00420abcdefghi!");
                                             }
                                         }
-                                        Log(String.Format("JOB FOR NUMBER {0} - {1} COMPLETED!", cislo_trimmed, recipient_name));
-                                    }
-                                    else
-                                    {
-                                        Log("\"" + cislo_trimmed + "\" is not valid phone number in format 00420abcdefghi!");
+                                        else
+                                        {
+                                            Log(String.Format("Line {0} does not contain valid number and recipient name!", currentLine));
+                                        }
+                                        currentLine++;
                                     }
                                 }
                                 else
                                 {
-                                    Log("\"" + cislo_trimmed + "\" is not valid phone number in format 00420abcdefghi!");
+                                    Log(String.Format("Unable to set encoding! Error: {0}!", response[2]));
                                 }
+                            }
+                            else
+                            {
+                                Log("Unable to set encoding! Invalid AT server response!");
                             }
                         }
                         else
                         {
-                            Log(String.Format("Unable to set encoding! Error: {0}!", response[2]));
+                            Log(String.Format("Unable to set message format! Error: {0}!", response[2]));
                         }
+                        portHandler.Close();
+                        Log(String.Format("SMS SENDING JOB FOR {0} FINISHED!", whoString.ToUpper()));
                     }
                     else
                     {
-                        Log(String.Format("Unable to set message format! Error: {0}!", response[2]));
+                        Log("Unable to set message format! Invalid AT server response!");
                     }
-                    portHandler.Close();
-                    Log("SMS SENDING JOB FINISHED!");
                 }
                 else
                 {
@@ -453,6 +546,39 @@ namespace SMS_server
                 Log("List of phone numbers does not exists! Skipping job!");
             }
         }
+
+        static bool CheckIsLocalPath(string path)                                               //zkontroluje, jestli se jedna o localpath, nebo URL
+        {
+            if (path.StartsWith(@"http://"))
+            {
+                return false;
+            }
+
+            return new Uri(path).IsFile;
+        }
+
+        static bool CheckURLfileExists(string url)
+        {
+            HttpWebResponse response = null;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "HEAD";
+            
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch 
+            {
+                /* A WebException will be thrown if the status of the response is not `200 OK` */
+                return false;
+            }
+            if (response != null)
+            {
+                response.Close();
+                return true;
+            }
+            return false;
+        }                                           //zkontroluje, jestli zadane URL opravdu existuje
 
         static int CalcLeventhainDist(string s, string t)                                       //spocita rozdil mezi dvemi stringy
         {
@@ -490,59 +616,86 @@ namespace SMS_server
             return d[delkaS, delkaT];                           //vrat rozdil
         }
 
-        static void CheckForNewestXML(string fname)                                             //kontroluje hashe XML
+        static void CheckForNewestXML(string fname, Boolean isTeacher = false)                  //kontroluje hashe XML
         {
-            /*if (File.Exists(fname))
+            if (CheckIsLocalPath(fname))
             {
+                if (!File.Exists(fname))
+                {
+                    Log(String.Format("XML file with RSS feed \"{0}\" is local file and does not exists! Skipping job...", fname));
+                    return;
+                }
                 byte[] nhash = CalcMD5forFile(fname);
                 if (File.Exists(fname + ".md5"))
-                
+                {
                     byte[] ohash = File.ReadAllBytes(fname + ".md5");
                     if (!MD5.Equals(BitConverter.ToString(nhash), BitConverter.ToString(ohash)))
-                    {*/
-                        //hash nesohlasi, zpracuj soubor
+                    {
                         Log("XML feed changed from last update! Parsing RSS feed...");
-                        List<string[]> clanky = ParseActualXML();
-                        //File.WriteAllBytes(fname + ".md5", nhash);
-                        if (clanky.Count > 0)
-                        {
-                            SendSMSs(clanky);
-                        }
-                    /*}
+                        File.WriteAllBytes(fname + ".md5", nhash);
+                    }
                     else
                     {
-                        //Log("XML feed se od posledniho prubehu nezmenil! Cekam...");
+                        Log("XML feed se od posledniho prubehu nezmenil! Cekam...");
+                        return;
                     }
                 }
                 else
                 {
                     //hash nesouhlasi, zpracuj soubor
                     Log("First start of aplication! Control checksum does not exist! Parsing RSS feed...");
-                    List<string[]> clanky = ParseActualXML();
                     File.WriteAllBytes(fname + ".md5", nhash);
-                    if (clanky.Count > 0)
-                    {
-                        SendSMSs(clanky);
-                    }
                 }
-           }
+            }
             else
             {
-                Log(String.Format("XML file with RSS feed \"{0}\" does not exists! Skipping job...", fname));
-            }*/
+                if (!CheckURLfileExists(fname))
+                {
+                    Log(String.Format("XML file with RSS feed \"{0}\" is URL adress and does not appear to exist or to be an XML file! Skipping job...", fname));
+                    return;
+                }
+            }
+            List<string[]> newArticles = ParseActualXML(fname, isTeacher);
+            if (newArticles.Count > 0)
+            {
+                SendSMSs(newArticles, isTeacher);
+            }
         }
 
-        static List<string[]> ParseActualXML()
+        static List<string[]> ParseActualXML(string feedFName, Boolean isTeacher)
         {
-            string url = feedFName;
-            XmlReader reader = XmlReader.Create(url);
-
             List<string[]> seznamClanku = new List<string[]>();
+            XmlDocument xmlDoc = new XmlDocument(); // Create an empty XML document object
+
+            if (CheckIsLocalPath(feedFName))
+            {
+                try
+                {
+                    xmlDoc.Load(feedFName); // Load the XML document from the specified file
+                }
+                catch
+                {
+                    Log(String.Format("Failed parsing XML file with RSS feed \"{0}\"! File is not XML, or corrupted! Skipping job...", feedFName));
+                    return seznamClanku;
+                }
+            }
+            else
+            {
+                try
+                {
+                    string url = feedFName;
+                    XmlReader reader = XmlReader.Create(url);
+                    xmlDoc.Load(reader); // Load the XML document from the specified url
+                }
+                catch
+                {
+                    Log(String.Format("Failed parsing XML file with RSS feed \"{0}\"! File is not XML, or corrupted! Skipping job...", feedFName));
+                    return seznamClanku;
+                }
+            }
+        
 
             Log("Loading XML!");
-            XmlDocument xmlDoc = new XmlDocument(); // Create an empty XML document object
-            xmlDoc.Load(reader); // Load the XML document from the specified file
-            //xmlDoc.Load(feedFName); // Load the XML document from the specified file
 
             XmlNodeList nodeList = xmlDoc.GetElementsByTagName("item");
             Log("XML loaded succesfully!");
@@ -553,11 +706,12 @@ namespace SMS_server
                 XmlElement XMLclanek = node as XmlElement;
                 string id = XMLclanek.GetElementsByTagName("guid")[0].InnerText;
                 id = id.Substring(id.IndexOf("ID=") + 3);
-                string nazev = XMLclanek.GetElementsByTagName("title")[0].InnerText;
+                string nazev = XMLclanek.GetElementsByTagName("title")[0].InnerText.Trim();
                 string autor = XMLclanek.GetElementsByTagName("author")[0].InnerText;
-                autor = autor.Substring(autor.IndexOf(" ") + 1, 2) + autor.Substring(0, 2);
+                autor = autor.Substring(0, 3) + autor.Substring(autor.IndexOf(" ") + 1, 3);
                 string obsah = XMLclanek.GetElementsByTagName("description")[0].InnerText.Trim();
                 obsah = Regex.Replace(obsah, @"\p{C}+", string.Empty);
+                nazev = Regex.Replace(nazev, @"\p{C}+", string.Empty);
                 while (obsah.IndexOf("<a href") != -1)
                 {
                     obsah.Replace("https://", string.Empty);
@@ -571,34 +725,46 @@ namespace SMS_server
                 }
                 //Regex.Replace(obsah, "<[^>]*(>|$)", string.Empty)
                 obsah = HtmlUtilities.ConvertToPlainText(obsah);
-                obsah = obsah.Replace("Attachments:", string.Empty).Replace("Body:", string.Empty);
+                nazev = HtmlUtilities.ConvertToPlainText(nazev);
+                string obsah_bezPriloh = obsah.Substring(0, Math.Max(obsah.IndexOf("Attachments:")-1,0));
+                obsah = obsah.Replace("Attachments:", string.Empty).Replace("Body:", string.Empty).Replace((char)0xA0,(char)0x20);
+                nazev = nazev.Replace((char)0xA0, (char)0x20);
+                if (obsah.Length > 700)
+                {
+                    obsah = obsah.Substring(0, 700) + "...\nZprava byla zkracena! Pokracovani:";
+                }
+                if (nazev.Length > 100)
+                {
+                    nazev = nazev.Substring(0, 100) + "...";
+                }
                 string link = XMLclanek.GetElementsByTagName("link")[0].InnerText;
                 string datum = XMLclanek.GetElementsByTagName("pubDate")[0].InnerText;
                 if (!string.IsNullOrEmpty(GetChecksumForID(Convert.ToInt32(id))))
                 {
-                    if (CalcMD5(obsah) == GetChecksumForID(Convert.ToInt32(id)))
+                    if (CalcMD5(obsah_bezPriloh) == GetChecksumForID(Convert.ToInt32(id)) || string.IsNullOrWhiteSpace(obsah_bezPriloh))
                     {
                         Log(String.Format("There already is record for article {0} and checksum is same as in RSS feed!", id));
                     }
                     else
                     {
-                        int rozdil = CalcLeventhainDist(obsah, GetContentForID(Convert.ToInt32(id)));
-                        float procenta = (float)rozdil / obsah.Length * 100;
-                        Log(String.Format("There already is record for article {0} and it does differ by {1} characters, which is {2}% of string!", id, rozdil, procenta));
+                        Log(String.Format("There already is record for article {0}, but checksums are not equal!", id));
+                        int rozdil = CalcLeventhainDist(obsah_bezPriloh, GetContentForID(Convert.ToInt32(id)));
+                        float procenta = (float)rozdil / obsah_bezPriloh.Length * 100;
+                        Log(String.Format("Article {0} differs by {1} characters, which is {2}% of string! That is probably not imprtant change, skipping!", id, rozdil, procenta));
                         if (procenta > 30)
                         {
-                            Log(String.Format("Article {0} differs by more than 30% of string! Adding to SMS job as updated article!", id));
-                            string[] clanekArr = new string[] { id, nazev, autor, obsah, link, datum, "edit" };
+                            Log(String.Format("Article {0} differs by {1} characters, which is more than 30% of string! Adding to SMS job as updated article!", id, rozdil));
+                            string[] clanekArr = new string[] { id, nazev, autor, obsah, link, datum, "EDIT" };
                             seznamClanku.Add(clanekArr);
                         }
-                        SetValuesForID(Convert.ToInt32(id), obsah, CalcMD5(obsah));
+                        SetValuesForID(Convert.ToInt32(id), obsah_bezPriloh, CalcMD5(obsah_bezPriloh));
                     }
                 }
                 else
                 {
                     Log(String.Format("Article {0} does not have record! Adding to SMS job as new article!", id));
-                    SetValuesForID(Convert.ToInt32(id), obsah, CalcMD5(obsah));
-                    string[] clanekArr = new string[] { id, nazev, autor, obsah, link, datum, "new" };
+                    SetValuesForID(Convert.ToInt32(id), obsah_bezPriloh, CalcMD5(obsah_bezPriloh));
+                    string[] clanekArr = new string[] { id, nazev, autor, obsah, link, datum, "NEW" };
                     seznamClanku.Add(clanekArr);
                 }
             }
@@ -614,6 +780,7 @@ namespace SMS_server
                 var parser = new FileIniDataParser();
                 IniData data = parser.ReadFile("conf.ini");
                 feedFName = data["GeneralConfiguration"]["feedFile"];
+                teachersFeedFName = data["GeneralConfiguration"]["teachersFeedFile"];
                 if (data["GeneralConfiguration"]["displayLog"].ToLower() == "true")
                 {
                     verbose = true;
@@ -623,32 +790,35 @@ namespace SMS_server
                     verbose = false;
                 }
                 Log(String.Format("Source file with RSS feed is: {0}!", feedFName));
-                telNum = data["GeneralConfiguration"]["numbersList"];
-                Log(String.Format("Source file with phone numbers is: {0}!", telNum));
+                Log(String.Format("Source file with teachers RSS feed is: {0}!", teachersFeedFName));
+                telNum_fname = data["GeneralConfiguration"]["numbersList"];
+                telNumTeacher_fname = data["GeneralConfiguration"]["teachersNumbersList"];
+                Log(String.Format("Source file with phone numbers is: {0}!", telNum_fname));
+                Log(String.Format("Source file with techaers phone numbers is: {0}!", telNumTeacher_fname));
                 updateInt = Convert.ToInt32(data["GeneralConfiguration"]["updateInterval"]);
             }
             catch
             {
-                Log("Parsing ini file failed or ini file was not found! Press any key to exit!", false, true);
-                Console.ReadKey();
+                Log("Parsing ini file failed or ini file was not found!!", false, true, true);
+                //Console.ReadKey();
                 return;
             }
             Log("Configuration file loaded and parsed sucesfully!");
             try
             {
                 Log("Loading cache file!");
-                sqlite_conn = new SQLiteConnection("Data Source=clanky.cf; Version = 3; Compress = True; ");
+                sqlite_conn = new SQLiteConnection("Data Source=newArticles.cf; Version = 3; Compress = True; ");
                 sqlite_conn.Open();
                 Log("Cache file loaded sucesfully!");
 
                 Log("Cheching for cache file consistency!");
                 SQLiteCommand command = new SQLiteCommand(sqlite_conn)
                 {
-                    CommandText = "SELECT name FROM sqlite_master WHERE name='clanky'"
+                    CommandText = "SELECT name FROM sqlite_master WHERE name='newArticles'"
                 };
                 var tableName = command.ExecuteScalar();
                 command.Dispose();
-                if (tableName != null && tableName.ToString() == "clanky")
+                if (tableName != null && tableName.ToString() == "newArticles")
                 {
                     Log("Cheching for cache file consistency succeed!");
                 }
@@ -660,17 +830,23 @@ namespace SMS_server
             }
             catch
             {
-                Log("Opening cache file failed! Press any key to exit!", false, true);
-                Console.ReadKey();
+                Log("Opening cache file failed!", false, true, true);
+                //Console.ReadKey();
                 return;
             }
             GetATCOM();
 
+            Stopwatch stopwatch = new Stopwatch();
+
             while (true)
             {
+                stopwatch.Reset();
+                stopwatch.Start();
                 CheckForATonCOM(comPort);
                 CheckForNewestXML(feedFName);
-                System.Threading.Thread.Sleep(updateInt - 500 - 150);
+                CheckForNewestXML(teachersFeedFName, true);
+                stopwatch.Stop();
+                System.Threading.Thread.Sleep((int) Math.Max(updateInt - stopwatch.ElapsedMilliseconds,0));
             }
         }
     }

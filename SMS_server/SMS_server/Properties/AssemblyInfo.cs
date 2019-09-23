@@ -1,36 +1,39 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// Obecné informace o sestavení se řídí přes následující 
+// sadu atributů. Změnou hodnot těchto atributů se upraví informace
+// přidružené k sestavení.
 [assembly: AssemblyTitle("SMS_server")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aplikace na práci s RSS souborem")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("JachyHm")]
 [assembly: AssemblyProduct("SMS_server")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © JachyHm 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
+// Nastavení ComVisible na false způsobí neviditelnost typů v tomto sestavení
+// pro komponenty modelu COM. Pokud potřebujete přístup k typu v tomto sestavení
+// modelu COM, nastavte atribut ComVisible daného typu na hodnotu True.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a7225cc2-7153-4de2-aefb-f6b057e945bb")]
+// Následující GUID se používá pro ID knihovny typů, pokud je tento projekt vystavený pro COM.
+[assembly: Guid("b619dcee-780a-43f7-87d1-16b23811537f")]
 
-// Version information for an assembly consists of the following four values:
+// Informace o verzi sestavení se skládá z těchto čtyř hodnot:
 //
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
+//      Hlavní verze
+//      Podverze
+//      Číslo sestavení
+//      Revize
 //
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
+// Můžete zadat všechny hodnoty nebo nastavit výchozí číslo buildu a revize pomocí *, jak je vidět níže:
+// pomocí zástupného znaku * takto:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("cs-CZ")]
+
