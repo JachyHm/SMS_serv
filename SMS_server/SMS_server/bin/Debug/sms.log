@@ -1,0 +1,959 @@
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 12:28:33.955]:Parsing ini file failed or ini file was not found! Press any key to exit!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 12:29:56.080]:Source file with RSS feed is: s:\skola\SMS_server\SMS_server\bin\Release\rss.xml!
+[05.07.2019 12:29:56.095]:Source file with phone numbers is: s:\skola\SMS_server\SMS_server\bin\Release\cisla.num!
+[05.07.2019 12:29:56.101]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 12:29:56.106]:Loading cache file!
+[05.07.2019 12:29:56.520]:Cache file loaded sucesfully!
+[05.07.2019 12:29:56.526]:Cheching for cache file consistency!
+[05.07.2019 12:29:56.606]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 12:29:56.643]:Cache file structure created succesfully!
+[05.07.2019 12:29:57.160]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 12:29:57.800]:AT server is on COM5!
+[05.07.2019 12:29:58.422]:AT server lives on COM5!
+[05.07.2019 12:29:58.428]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+[05.07.2019 12:29:59.409]:AT server lives on COM5!
+[05.07.2019 12:29:59.415]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+[05.07.2019 12:30:00.396]:AT server lives on COM5!
+[05.07.2019 12:30:00.403]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+[05.07.2019 12:30:01.384]:AT server lives on COM5!
+[05.07.2019 12:30:01.391]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+[05.07.2019 12:30:02.371]:AT server lives on COM5!
+[05.07.2019 12:30:02.385]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+[05.07.2019 12:30:03.358]:AT server lives on COM5!
+[05.07.2019 12:30:03.364]:XML file with RSS feed "s:\skola\SMS_server\SMS_server\bin\Release\rss.xml" does not exists! Skipping job...
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 12:33:32.770]:Source file with RSS feed is: H:\VS2017\SMS_server\SMS_server\bin\Debug\rss.xml!
+[05.07.2019 12:33:32.781]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 12:33:32.786]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 12:33:32.794]:Loading cache file!
+[05.07.2019 12:33:33.200]:Cache file loaded sucesfully!
+[05.07.2019 12:33:33.207]:Cheching for cache file consistency!
+[05.07.2019 12:33:33.302]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 12:33:33.392]:Cache file structure created succesfully!
+[05.07.2019 12:33:33.912]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 12:33:34.547]:AT server is on COM5!
+[05.07.2019 12:33:35.169]:AT server lives on COM5!
+[05.07.2019 12:33:35.199]:First start of aplication! Control checksum does not exist! Parsing RSS feed...
+[05.07.2019 12:33:35.207]:Loading XML!
+[05.07.2019 12:33:35.215]:XML loaded succesfully!
+[05.07.2019 12:33:35.220]:Reading XML content...
+[05.07.2019 12:33:35.432]:Article 987 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.439]:Setting new values for article 987! Checksum: "77-A2-BF-5C-CB-D5-81-A7-69-01-CA-54-23-6E-8D-50".
+[05.07.2019 12:33:35.491]:Article 985 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.497]:Setting new values for article 985! Checksum: "D4-7B-31-F9-30-83-51-23-32-CE-8A-DB-49-15-7A-A6".
+[05.07.2019 12:33:35.562]:Article 980 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.568]:Setting new values for article 980! Checksum: "59-ED-02-D5-87-5E-68-E9-37-46-D1-0B-35-4F-90-EF".
+[05.07.2019 12:33:35.689]:Article 977 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.693]:Setting new values for article 977! Checksum: "7E-7A-1C-13-A8-84-54-38-02-AC-B4-F8-53-A9-0B-0F".
+[05.07.2019 12:33:35.732]:Article 988 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.740]:Setting new values for article 988! Checksum: "57-95-DA-F9-7C-85-63-D6-EB-FE-F6-A7-55-11-3D-B2".
+[05.07.2019 12:33:35.790]:Article 986 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.796]:Setting new values for article 986! Checksum: "35-5F-A8-FC-C7-A0-C7-08-E1-49-83-43-22-9F-8E-1A".
+[05.07.2019 12:33:35.863]:Article 983 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.868]:Setting new values for article 983! Checksum: "57-38-25-D7-0E-E4-B5-85-4F-00-5C-E4-80-21-92-3D".
+[05.07.2019 12:33:35.924]:Article 982 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.930]:Setting new values for article 982! Checksum: "B8-FB-C5-58-BF-5D-23-54-4F-A4-C8-22-3B-FD-CC-5A".
+[05.07.2019 12:33:35.966]:Article 981 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:35.971]:Setting new values for article 981! Checksum: "95-FE-E3-93-B2-65-08-A1-CA-A8-26-65-48-DE-63-56".
+[05.07.2019 12:33:36.006]:Article 979 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:33:36.011]:Setting new values for article 979! Checksum: "D3-AF-30-10-11-92-77-A3-C2-D6-B1-1D-FB-1B-1B-16".
+[05.07.2019 12:33:36.043]:From least update 10 articles was added or changed!
+[05.07.2019 12:33:36.056]:List of phone numbers exists! Parsing...
+[05.07.2019 12:33:36.066]:List of phone numbers contains 3 phone numbers!
+[05.07.2019 12:33:36.091]:STARTING SMS SENDING JOB!
+[05.07.2019 12:33:36.098]:Setting message format!
+[05.07.2019 12:33:36.119]:Message format succesfully set!
+[05.07.2019 12:33:36.135]:Encoding succesfully set!
+[05.07.2019 12:33:36.142]:STARTING JOB FOR NUMBER 00420722555716!
+[05.07.2019 12:33:36.148]:Setting recipient number to 00420722555716!
+[05.07.2019 12:33:36.155]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:33:36.169]:Setting recipient number succesfull!
+[05.07.2019 12:33:36.173]:Sending message body!
+[05.07.2019 12:33:36.271]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:33:49.194]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:33:49.201]:Setting recipient number to 00420722555716!
+[05.07.2019 12:33:49.208]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:33:49.220]:Setting recipient number succesfull!
+[05.07.2019 12:33:49.224]:Sending message body!
+[05.07.2019 12:33:49.282]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:33:55.787]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:33:55.793]:Setting recipient number to 00420722555716!
+[05.07.2019 12:33:55.800]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:33:55.816]:Setting recipient number succesfull!
+[05.07.2019 12:33:55.821]:Sending message body!
+[05.07.2019 12:33:55.992]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:16.497]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:16.506]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:16.516]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:16.537]:Setting recipient number succesfull!
+[05.07.2019 12:34:16.544]:Sending message body!
+[05.07.2019 12:34:16.593]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:20.502]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:20.508]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:20.514]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:20.531]:Setting recipient number succesfull!
+[05.07.2019 12:34:20.536]:Sending message body!
+[05.07.2019 12:34:20.634]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:30.864]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:30.870]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:30.877]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:30.890]:Setting recipient number succesfull!
+[05.07.2019 12:34:30.896]:Sending message body!
+[05.07.2019 12:34:30.979]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:40.509]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:40.517]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:40.525]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:40.537]:Setting recipient number succesfull!
+[05.07.2019 12:34:40.542]:Sending message body!
+[05.07.2019 12:34:40.586]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:44.272]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:44.280]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:44.286]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:44.299]:Setting recipient number succesfull!
+[05.07.2019 12:34:44.304]:Sending message body!
+[05.07.2019 12:34:44.355]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:48.041]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:48.048]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:48.056]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:48.068]:Setting recipient number succesfull!
+[05.07.2019 12:34:48.075]:Sending message body!
+[05.07.2019 12:34:48.124]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:34:54.167]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:34:54.173]:Setting recipient number to 00420722555716!
+[05.07.2019 12:34:54.178]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:34:54.193]:Setting recipient number succesfull!
+[05.07.2019 12:34:54.198]:Sending message body!
+[05.07.2019 12:34:54.265]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:35:00.753]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:35:00.760]:JOB FOR NUMBER 00420722555716 COMPLETED!
+[05.07.2019 12:35:00.767]:STARTING JOB FOR NUMBER 00420725245545!
+[05.07.2019 12:35:00.772]:Setting recipient number to 00420725245545!
+[05.07.2019 12:35:00.779]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:35:00.794]:Setting recipient number succesfull!
+[05.07.2019 12:35:00.800]:Sending message body!
+[05.07.2019 12:35:00.899]:Sending message body succesfull! Waiting for SMS to send!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 12:37:48.980]:Source file with RSS feed is: H:\VS2017\SMS_server\SMS_server\bin\Debug\rss.xml!
+[05.07.2019 12:37:48.992]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 12:37:48.998]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 12:37:49.003]:Loading cache file!
+[05.07.2019 12:37:49.410]:Cache file loaded sucesfully!
+[05.07.2019 12:37:49.415]:Cheching for cache file consistency!
+[05.07.2019 12:37:49.495]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 12:37:49.534]:Cache file structure created succesfully!
+[05.07.2019 12:37:50.056]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 12:37:50.689]:AT server is on COM5!
+[05.07.2019 12:37:51.311]:AT server lives on COM5!
+[05.07.2019 12:37:51.331]:First start of aplication! Control checksum does not exist! Parsing RSS feed...
+[05.07.2019 12:37:51.341]:Loading XML!
+[05.07.2019 12:37:51.350]:XML loaded succesfully!
+[05.07.2019 12:37:51.358]:Reading XML content...
+[05.07.2019 12:37:51.497]:Article 987 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.503]:Setting new values for article 987! Checksum: "77-A2-BF-5C-CB-D5-81-A7-69-01-CA-54-23-6E-8D-50".
+[05.07.2019 12:37:51.537]:Article 985 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.543]:Setting new values for article 985! Checksum: "D4-7B-31-F9-30-83-51-23-32-CE-8A-DB-49-15-7A-A6".
+[05.07.2019 12:37:51.577]:Article 980 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.582]:Setting new values for article 980! Checksum: "59-ED-02-D5-87-5E-68-E9-37-46-D1-0B-35-4F-90-EF".
+[05.07.2019 12:37:51.618]:Article 977 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.626]:Setting new values for article 977! Checksum: "7E-7A-1C-13-A8-84-54-38-02-AC-B4-F8-53-A9-0B-0F".
+[05.07.2019 12:37:51.837]:Article 988 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.844]:Setting new values for article 988! Checksum: "57-95-DA-F9-7C-85-63-D6-EB-FE-F6-A7-55-11-3D-B2".
+[05.07.2019 12:37:51.883]:Article 986 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.889]:Setting new values for article 986! Checksum: "35-5F-A8-FC-C7-A0-C7-08-E1-49-83-43-22-9F-8E-1A".
+[05.07.2019 12:37:51.924]:Article 983 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:51.929]:Setting new values for article 983! Checksum: "57-38-25-D7-0E-E4-B5-85-4F-00-5C-E4-80-21-92-3D".
+[05.07.2019 12:37:52.207]:Article 982 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:52.212]:Setting new values for article 982! Checksum: "B8-FB-C5-58-BF-5D-23-54-4F-A4-C8-22-3B-FD-CC-5A".
+[05.07.2019 12:37:52.255]:Article 981 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:52.260]:Setting new values for article 981! Checksum: "95-FE-E3-93-B2-65-08-A1-CA-A8-26-65-48-DE-63-56".
+[05.07.2019 12:37:52.309]:Article 979 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:37:52.315]:Setting new values for article 979! Checksum: "D3-AF-30-10-11-92-77-A3-C2-D6-B1-1D-FB-1B-1B-16".
+[05.07.2019 12:37:52.351]:From least update 10 articles was added or changed!
+[05.07.2019 12:37:52.367]:List of phone numbers exists! Parsing...
+[05.07.2019 12:37:52.374]:List of phone numbers contains 2 phone numbers!
+[05.07.2019 12:37:52.389]:STARTING SMS SENDING JOB!
+[05.07.2019 12:37:52.395]:Setting message format!
+[05.07.2019 12:37:52.404]:Unable to set message format! Error: O!
+[05.07.2019 12:37:52.520]:SMS SENDING JOB FINISHED!
+[05.07.2019 12:37:53.604]:AT server lives on COM5!
+[05.07.2019 12:37:54.592]:AT server lives on COM5!
+[05.07.2019 12:37:55.581]:AT server lives on COM5!
+[05.07.2019 12:37:56.569]:AT server lives on COM5!
+[05.07.2019 12:37:57.555]:AT server lives on COM5!
+[05.07.2019 12:37:58.542]:AT server lives on COM5!
+[05.07.2019 12:37:59.515]:AT server lives on COM5!
+[05.07.2019 12:38:00.503]:AT server lives on COM5!
+[05.07.2019 12:38:01.491]:AT server lives on COM5!
+[05.07.2019 12:38:02.478]:AT server lives on COM5!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 12:38:34.545]:Source file with RSS feed is: H:\VS2017\SMS_server\SMS_server\bin\Debug\rss.xml!
+[05.07.2019 12:38:34.558]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 12:38:34.565]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 12:38:34.571]:Loading cache file!
+[05.07.2019 12:38:34.977]:Cache file loaded sucesfully!
+[05.07.2019 12:38:34.983]:Cheching for cache file consistency!
+[05.07.2019 12:38:35.053]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 12:38:35.106]:Cache file structure created succesfully!
+[05.07.2019 12:38:35.625]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 12:38:36.246]:AT server is on COM5!
+[05.07.2019 12:38:36.867]:AT server lives on COM5!
+[05.07.2019 12:38:36.888]:First start of aplication! Control checksum does not exist! Parsing RSS feed...
+[05.07.2019 12:38:36.900]:Loading XML!
+[05.07.2019 12:38:36.906]:XML loaded succesfully!
+[05.07.2019 12:38:36.911]:Reading XML content...
+[05.07.2019 12:38:37.036]:Article 987 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.043]:Setting new values for article 987! Checksum: "77-A2-BF-5C-CB-D5-81-A7-69-01-CA-54-23-6E-8D-50".
+[05.07.2019 12:38:37.102]:Article 985 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.108]:Setting new values for article 985! Checksum: "D4-7B-31-F9-30-83-51-23-32-CE-8A-DB-49-15-7A-A6".
+[05.07.2019 12:38:37.149]:Article 980 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.156]:Setting new values for article 980! Checksum: "59-ED-02-D5-87-5E-68-E9-37-46-D1-0B-35-4F-90-EF".
+[05.07.2019 12:38:37.196]:Article 977 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.201]:Setting new values for article 977! Checksum: "7E-7A-1C-13-A8-84-54-38-02-AC-B4-F8-53-A9-0B-0F".
+[05.07.2019 12:38:37.239]:Article 988 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.244]:Setting new values for article 988! Checksum: "57-95-DA-F9-7C-85-63-D6-EB-FE-F6-A7-55-11-3D-B2".
+[05.07.2019 12:38:37.287]:Article 986 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.293]:Setting new values for article 986! Checksum: "35-5F-A8-FC-C7-A0-C7-08-E1-49-83-43-22-9F-8E-1A".
+[05.07.2019 12:38:37.330]:Article 983 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.343]:Setting new values for article 983! Checksum: "57-38-25-D7-0E-E4-B5-85-4F-00-5C-E4-80-21-92-3D".
+[05.07.2019 12:38:37.387]:Article 982 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.393]:Setting new values for article 982! Checksum: "B8-FB-C5-58-BF-5D-23-54-4F-A4-C8-22-3B-FD-CC-5A".
+[05.07.2019 12:38:37.437]:Article 981 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.442]:Setting new values for article 981! Checksum: "95-FE-E3-93-B2-65-08-A1-CA-A8-26-65-48-DE-63-56".
+[05.07.2019 12:38:37.484]:Article 979 does not have record! Adding to SMS job as new article!
+[05.07.2019 12:38:37.490]:Setting new values for article 979! Checksum: "D3-AF-30-10-11-92-77-A3-C2-D6-B1-1D-FB-1B-1B-16".
+[05.07.2019 12:38:37.529]:From least update 10 articles was added or changed!
+[05.07.2019 12:38:37.550]:List of phone numbers exists! Parsing...
+[05.07.2019 12:38:37.559]:List of phone numbers contains 2 phone numbers!
+[05.07.2019 12:38:37.580]:STARTING SMS SENDING JOB!
+[05.07.2019 12:38:37.586]:Setting message format!
+[05.07.2019 12:38:37.610]:Message format succesfully set!
+[05.07.2019 12:38:37.626]:Encoding succesfully set!
+[05.07.2019 12:38:37.631]:STARTING JOB FOR NUMBER 00420722555716!
+[05.07.2019 12:38:37.637]:Setting recipient number to 00420722555716!
+[05.07.2019 12:38:37.645]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:38:37.660]:Setting recipient number succesfull!
+[05.07.2019 12:38:37.666]:Sending message body!
+[05.07.2019 12:38:37.762]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:38:50.701]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:38:50.707]:Setting recipient number to 00420722555716!
+[05.07.2019 12:38:50.713]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:38:50.728]:Setting recipient number succesfull!
+[05.07.2019 12:38:50.733]:Sending message body!
+[05.07.2019 12:38:50.792]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:38:57.536]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:38:57.542]:Setting recipient number to 00420722555716!
+[05.07.2019 12:38:57.548]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:38:57.566]:Setting recipient number succesfull!
+[05.07.2019 12:38:57.572]:Sending message body!
+[05.07.2019 12:38:57.740]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:17.783]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:17.788]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:17.795]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:17.809]:Setting recipient number succesfull!
+[05.07.2019 12:39:17.813]:Sending message body!
+[05.07.2019 12:39:17.864]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:21.550]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:21.558]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:21.566]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:21.580]:Setting recipient number succesfull!
+[05.07.2019 12:39:21.586]:Sending message body!
+[05.07.2019 12:39:21.682]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:32.136]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:32.144]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:32.151]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:32.163]:Setting recipient number succesfull!
+[05.07.2019 12:39:32.170]:Sending message body!
+[05.07.2019 12:39:32.257]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:42.026]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:42.032]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:42.038]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:42.053]:Setting recipient number succesfull!
+[05.07.2019 12:39:42.059]:Sending message body!
+[05.07.2019 12:39:42.103]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:45.789]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:45.797]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:45.805]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:45.817]:Setting recipient number succesfull!
+[05.07.2019 12:39:45.822]:Sending message body!
+[05.07.2019 12:39:45.872]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:49.797]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:49.804]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:49.812]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:49.823]:Setting recipient number succesfull!
+[05.07.2019 12:39:49.828]:Sending message body!
+[05.07.2019 12:39:49.880]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:39:55.445]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:39:55.450]:Setting recipient number to 00420722555716!
+[05.07.2019 12:39:55.456]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:39:55.470]:Setting recipient number succesfull!
+[05.07.2019 12:39:55.476]:Sending message body!
+[05.07.2019 12:39:55.541]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:02.030]:SMS to number 00420722555716 succesfully sent!
+[05.07.2019 12:40:02.036]:JOB FOR NUMBER 00420722555716 COMPLETED!
+[05.07.2019 12:40:02.043]:STARTING JOB FOR NUMBER 00420725942886!
+[05.07.2019 12:40:02.049]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:02.054]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:02.073]:Setting recipient number succesfull!
+[05.07.2019 12:40:02.079]:Sending message body!
+[05.07.2019 12:40:02.176]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:12.392]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:40:12.400]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:12.406]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:12.418]:Setting recipient number succesfull!
+[05.07.2019 12:40:12.423]:Sending message body!
+[05.07.2019 12:40:12.481]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:18.970]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:40:18.976]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:18.982]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:18.997]:Setting recipient number succesfull!
+[05.07.2019 12:40:19.003]:Sending message body!
+[05.07.2019 12:40:19.168]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:39.690]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:40:39.696]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:39.704]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:39.715]:Setting recipient number succesfull!
+[05.07.2019 12:40:39.720]:Sending message body!
+[05.07.2019 12:40:39.769]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:43.693]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:40:43.700]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:43.708]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:43.723]:Setting recipient number succesfull!
+[05.07.2019 12:40:43.730]:Sending message body!
+[05.07.2019 12:40:43.829]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:40:54.287]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:40:54.294]:Setting recipient number to 00420725942886!
+[05.07.2019 12:40:54.301]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:40:54.309]:Setting recipient number succesfull!
+[05.07.2019 12:40:54.314]:Sending message body!
+[05.07.2019 12:40:54.398]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:41:03.928]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:41:03.934]:Setting recipient number to 00420725942886!
+[05.07.2019 12:41:03.941]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:41:03.956]:Setting recipient number succesfull!
+[05.07.2019 12:41:03.962]:Sending message body!
+[05.07.2019 12:41:04.006]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:41:07.708]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:41:07.714]:Setting recipient number to 00420725942886!
+[05.07.2019 12:41:07.721]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:41:07.735]:Setting recipient number succesfull!
+[05.07.2019 12:41:07.742]:Sending message body!
+[05.07.2019 12:41:07.796]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:41:11.705]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:41:11.712]:Setting recipient number to 00420725942886!
+[05.07.2019 12:41:11.719]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:41:11.733]:Setting recipient number succesfull!
+[05.07.2019 12:41:11.740]:Sending message body!
+[05.07.2019 12:41:11.789]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:41:17.354]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:41:17.359]:Setting recipient number to 00420725942886!
+[05.07.2019 12:41:17.365]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 12:41:17.381]:Setting recipient number succesfull!
+[05.07.2019 12:41:17.386]:Sending message body!
+[05.07.2019 12:41:17.451]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 12:41:23.939]:SMS to number 00420725942886 succesfully sent!
+[05.07.2019 12:41:23.947]:JOB FOR NUMBER 00420725942886 COMPLETED!
+[05.07.2019 12:41:24.066]:SMS SENDING JOB FINISHED!
+[05.07.2019 12:41:25.038]:AT server lives on COM5!
+[05.07.2019 12:41:26.025]:AT server lives on COM5!
+[05.07.2019 12:41:27.013]:AT server lives on COM5!
+[05.07.2019 12:41:28.000]:AT server lives on COM5!
+[05.07.2019 12:41:28.988]:AT server lives on COM5!
+[05.07.2019 12:41:29.975]:AT server lives on COM5!
+[05.07.2019 12:41:30.962]:AT server lives on COM5!
+[05.07.2019 12:41:31.949]:AT server lives on COM5!
+[05.07.2019 12:41:32.952]:AT server lives on COM5!
+[05.07.2019 12:41:33.939]:AT server lives on COM5!
+[05.07.2019 12:41:34.927]:AT server lives on COM5!
+[05.07.2019 12:41:35.915]:AT server lives on COM5!
+[05.07.2019 12:41:36.902]:AT server lives on COM5!
+[05.07.2019 12:41:37.891]:AT server lives on COM5!
+[05.07.2019 12:41:38.879]:AT server lives on COM5!
+[05.07.2019 12:41:39.867]:AT server lives on COM5!
+[05.07.2019 12:41:40.870]:AT server lives on COM5!
+[05.07.2019 12:41:41.856]:AT server lives on COM5!
+[05.07.2019 12:41:42.845]:AT server lives on COM5!
+[05.07.2019 12:41:43.816]:AT server lives on COM5!
+[05.07.2019 12:41:44.820]:AT server lives on COM5!
+[05.07.2019 12:41:45.807]:AT server lives on COM5!
+[05.07.2019 12:41:46.794]:AT server lives on COM5!
+[05.07.2019 12:41:47.783]:AT server lives on COM5!
+[05.07.2019 12:41:48.770]:AT server lives on COM5!
+[05.07.2019 12:41:49.757]:AT server lives on COM5!
+[05.07.2019 12:41:50.746]:AT server lives on COM5!
+[05.07.2019 12:41:51.732]:AT server lives on COM5!
+[05.07.2019 12:41:52.720]:AT server lives on COM5!
+[05.07.2019 12:41:53.707]:AT server lives on COM5!
+[05.07.2019 12:41:54.694]:AT server lives on COM5!
+[05.07.2019 12:41:55.682]:AT server lives on COM5!
+[05.07.2019 12:41:56.685]:AT server lives on COM5!
+[05.07.2019 12:41:57.673]:AT server lives on COM5!
+[05.07.2019 12:41:58.660]:AT server lives on COM5!
+[05.07.2019 12:41:59.647]:AT server lives on COM5!
+[05.07.2019 12:42:00.635]:AT server lives on COM5!
+[05.07.2019 12:42:01.622]:AT server lives on COM5!
+[05.07.2019 12:42:02.611]:AT server lives on COM5!
+[05.07.2019 12:42:03.598]:AT server lives on COM5!
+[05.07.2019 12:42:04.586]:AT server lives on COM5!
+[05.07.2019 12:42:05.573]:AT server lives on COM5!
+[05.07.2019 12:42:06.559]:AT server lives on COM5!
+[05.07.2019 12:42:07.547]:AT server lives on COM5!
+[05.07.2019 12:42:08.535]:AT server lives on COM5!
+[05.07.2019 12:42:09.522]:AT server lives on COM5!
+[05.07.2019 12:42:10.509]:AT server lives on COM5!
+[05.07.2019 12:42:11.496]:AT server lives on COM5!
+[05.07.2019 12:42:12.484]:AT server lives on COM5!
+[05.07.2019 12:42:13.455]:AT server lives on COM5!
+[05.07.2019 12:42:14.442]:AT server lives on COM5!
+[05.07.2019 12:42:15.430]:AT server lives on COM5!
+[05.07.2019 12:42:16.417]:AT server lives on COM5!
+[05.07.2019 12:42:17.405]:AT server lives on COM5!
+[05.07.2019 12:42:18.392]:AT server lives on COM5!
+[05.07.2019 12:42:19.380]:AT server lives on COM5!
+[05.07.2019 12:42:20.367]:AT server lives on COM5!
+[05.07.2019 12:42:21.339]:AT server lives on COM5!
+[05.07.2019 12:42:22.327]:AT server lives on COM5!
+[05.07.2019 12:42:23.330]:AT server lives on COM5!
+[05.07.2019 12:42:24.317]:AT server lives on COM5!
+[05.07.2019 12:42:25.304]:AT server lives on COM5!
+[05.07.2019 12:42:26.292]:AT server lives on COM5!
+[05.07.2019 12:42:27.279]:AT server lives on COM5!
+[05.07.2019 12:42:28.266]:AT server lives on COM5!
+[05.07.2019 12:42:29.255]:AT server lives on COM5!
+[05.07.2019 12:42:30.242]:AT server lives on COM5!
+[05.07.2019 12:42:31.229]:AT server lives on COM5!
+[05.07.2019 12:42:32.217]:AT server lives on COM5!
+[05.07.2019 12:42:33.205]:AT server lives on COM5!
+[05.07.2019 12:42:34.193]:AT server lives on COM5!
+[05.07.2019 12:42:35.181]:AT server lives on COM5!
+[05.07.2019 12:42:36.168]:AT server lives on COM5!
+[05.07.2019 12:42:37.157]:AT server lives on COM5!
+[05.07.2019 12:42:38.143]:AT server lives on COM5!
+[05.07.2019 12:42:39.130]:AT server lives on COM5!
+[05.07.2019 12:42:40.118]:AT server lives on COM5!
+[05.07.2019 12:42:41.090]:AT server lives on COM5!
+[05.07.2019 12:42:42.092]:AT server lives on COM5!
+[05.07.2019 12:42:43.080]:AT server lives on COM5!
+[05.07.2019 12:42:44.068]:AT server lives on COM5!
+[05.07.2019 12:42:45.054]:AT server lives on COM5!
+[05.07.2019 12:42:46.041]:AT server lives on COM5!
+[05.07.2019 12:42:47.029]:AT server lives on COM5!
+[05.07.2019 12:42:48.016]:AT server lives on COM5!
+[05.07.2019 12:42:49.005]:AT server lives on COM5!
+[05.07.2019 12:42:49.993]:AT server lives on COM5!
+[05.07.2019 12:42:50.964]:AT server lives on COM5!
+[05.07.2019 12:42:51.953]:AT server lives on COM5!
+[05.07.2019 12:42:52.941]:AT server lives on COM5!
+[05.07.2019 12:42:53.930]:AT server lives on COM5!
+[05.07.2019 12:42:54.917]:AT server lives on COM5!
+[05.07.2019 12:42:55.904]:AT server lives on COM5!
+[05.07.2019 12:42:56.891]:AT server lives on COM5!
+[05.07.2019 12:42:57.879]:AT server lives on COM5!
+[05.07.2019 12:42:58.850]:AT server lives on COM5!
+[05.07.2019 12:42:59.838]:AT server lives on COM5!
+[05.07.2019 12:43:00.826]:AT server lives on COM5!
+[05.07.2019 12:43:01.812]:AT server lives on COM5!
+[05.07.2019 12:43:02.800]:AT server lives on COM5!
+[05.07.2019 12:43:03.787]:AT server lives on COM5!
+[05.07.2019 12:43:04.775]:AT server lives on COM5!
+[05.07.2019 12:43:05.762]:AT server lives on COM5!
+[05.07.2019 12:43:06.748]:AT server lives on COM5!
+[05.07.2019 12:43:07.735]:AT server lives on COM5!
+[05.07.2019 12:43:08.708]:AT server lives on COM5!
+[05.07.2019 12:43:09.696]:AT server lives on COM5!
+[05.07.2019 12:43:10.700]:AT server lives on COM5!
+[05.07.2019 12:43:11.687]:AT server lives on COM5!
+[05.07.2019 12:43:12.675]:AT server lives on COM5!
+[05.07.2019 12:43:13.663]:AT server lives on COM5!
+[05.07.2019 12:43:14.651]:AT server lives on COM5!
+[05.07.2019 12:43:15.638]:AT server lives on COM5!
+[05.07.2019 12:43:16.625]:AT server lives on COM5!
+[05.07.2019 12:43:17.613]:AT server lives on COM5!
+[05.07.2019 12:43:18.601]:AT server lives on COM5!
+[05.07.2019 12:43:19.588]:AT server lives on COM5!
+[05.07.2019 12:43:20.575]:AT server lives on COM5!
+[05.07.2019 12:43:21.564]:AT server lives on COM5!
+[05.07.2019 12:43:22.551]:AT server lives on COM5!
+[05.07.2019 12:43:23.523]:AT server lives on COM5!
+[05.07.2019 12:43:24.510]:AT server lives on COM5!
+[05.07.2019 12:43:25.497]:AT server lives on COM5!
+[05.07.2019 12:43:26.485]:AT server lives on COM5!
+[05.07.2019 12:43:27.456]:AT server lives on COM5!
+[05.07.2019 12:43:28.443]:AT server lives on COM5!
+[05.07.2019 12:43:29.430]:AT server lives on COM5!
+[05.07.2019 12:43:30.401]:AT server lives on COM5!
+[05.07.2019 12:43:31.389]:AT server lives on COM5!
+[05.07.2019 12:43:32.376]:AT server lives on COM5!
+[05.07.2019 12:43:33.364]:AT server lives on COM5!
+[05.07.2019 12:43:34.351]:AT server lives on COM5!
+[05.07.2019 12:43:35.339]:AT server lives on COM5!
+[05.07.2019 12:43:36.326]:AT server lives on COM5!
+[05.07.2019 12:43:37.314]:AT server lives on COM5!
+[05.07.2019 12:43:38.301]:AT server lives on COM5!
+[05.07.2019 12:43:39.288]:AT server lives on COM5!
+[05.07.2019 12:43:40.276]:AT server lives on COM5!
+[05.07.2019 12:43:41.263]:AT server lives on COM5!
+[05.07.2019 12:43:42.250]:AT server lives on COM5!
+[05.07.2019 12:43:43.237]:AT server lives on COM5!
+[05.07.2019 12:43:44.210]:AT server lives on COM5!
+[05.07.2019 12:43:45.211]:AT server lives on COM5!
+[05.07.2019 12:43:46.199]:AT server lives on COM5!
+[05.07.2019 12:43:47.203]:AT server lives on COM5!
+[05.07.2019 12:43:48.191]:AT server lives on COM5!
+[05.07.2019 12:43:49.178]:AT server lives on COM5!
+[05.07.2019 12:43:50.166]:AT server lives on COM5!
+[05.07.2019 12:43:51.153]:AT server lives on COM5!
+[05.07.2019 12:43:52.141]:AT server lives on COM5!
+[05.07.2019 12:43:53.128]:AT server lives on COM5!
+[05.07.2019 12:43:54.115]:AT server lives on COM5!
+[05.07.2019 12:43:55.087]:AT server lives on COM5!
+[05.07.2019 12:43:56.074]:AT server lives on COM5!
+[05.07.2019 12:43:57.061]:AT server lives on COM5!
+[05.07.2019 12:43:58.065]:AT server lives on COM5!
+[05.07.2019 12:43:59.052]:AT server lives on COM5!
+[05.07.2019 12:44:00.039]:AT server lives on COM5!
+[05.07.2019 12:44:01.026]:AT server lives on COM5!
+[05.07.2019 12:44:02.015]:AT server lives on COM5!
+[05.07.2019 12:44:02.985]:AT server lives on COM5!
+[05.07.2019 12:44:03.972]:AT server lives on COM5!
+[05.07.2019 12:44:04.961]:AT server lives on COM5!
+[05.07.2019 12:44:05.949]:AT server lives on COM5!
+[05.07.2019 12:44:06.936]:AT server lives on COM5!
+[05.07.2019 12:44:07.923]:AT server lives on COM5!
+[05.07.2019 12:44:08.911]:AT server lives on COM5!
+[05.07.2019 12:44:09.898]:AT server lives on COM5!
+[05.07.2019 12:44:10.885]:AT server lives on COM5!
+[05.07.2019 12:44:11.872]:AT server lives on COM5!
+[05.07.2019 12:44:12.860]:AT server lives on COM5!
+[05.07.2019 12:44:13.847]:AT server lives on COM5!
+[05.07.2019 12:44:14.834]:AT server lives on COM5!
+[05.07.2019 12:44:15.823]:AT server lives on COM5!
+[05.07.2019 12:44:16.810]:AT server lives on COM5!
+[05.07.2019 12:44:17.797]:AT server lives on COM5!
+[05.07.2019 12:44:18.785]:AT server lives on COM5!
+[05.07.2019 12:44:19.772]:AT server lives on COM5!
+[05.07.2019 12:44:20.760]:AT server lives on COM5!
+[05.07.2019 12:44:21.747]:AT server lives on COM5!
+[05.07.2019 12:44:22.735]:AT server lives on COM5!
+[05.07.2019 12:44:23.723]:AT server lives on COM5!
+[05.07.2019 12:44:24.695]:AT server lives on COM5!
+[05.07.2019 12:44:25.683]:AT server lives on COM5!
+[05.07.2019 12:44:26.670]:AT server lives on COM5!
+[05.07.2019 12:44:27.658]:AT server lives on COM5!
+[05.07.2019 12:44:28.645]:AT server lives on COM5!
+[05.07.2019 12:44:29.633]:AT server lives on COM5!
+[05.07.2019 12:44:30.620]:AT server lives on COM5!
+[05.07.2019 12:44:31.608]:AT server lives on COM5!
+[05.07.2019 12:44:32.595]:AT server lives on COM5!
+[05.07.2019 12:44:33.583]:AT server lives on COM5!
+[05.07.2019 12:44:34.569]:AT server lives on COM5!
+[05.07.2019 12:44:35.557]:AT server lives on COM5!
+[05.07.2019 12:44:36.545]:AT server lives on COM5!
+[05.07.2019 12:44:37.532]:AT server lives on COM5!
+[05.07.2019 12:44:38.520]:AT server lives on COM5!
+[05.07.2019 12:44:39.507]:AT server lives on COM5!
+[05.07.2019 12:44:40.495]:AT server lives on COM5!
+[05.07.2019 12:44:41.514]:AT was disconnected! Please connect it and press any key to continue!
+[05.07.2019 12:45:01.273]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 12:45:01.899]:AT server is on COM5!
+[05.07.2019 12:45:02.886]:AT server lives on COM5!
+[05.07.2019 12:45:03.890]:AT server lives on COM5!
+[05.07.2019 12:45:04.878]:AT server lives on COM5!
+[05.07.2019 12:45:05.865]:AT server lives on COM5!
+[05.07.2019 12:45:06.853]:AT server lives on COM5!
+[05.07.2019 12:45:07.840]:AT server lives on COM5!
+[05.07.2019 12:45:08.827]:AT server lives on COM5!
+[05.07.2019 12:45:09.814]:AT server lives on COM5!
+[05.07.2019 12:45:10.802]:AT server lives on COM5!
+[05.07.2019 12:45:11.790]:AT server lives on COM5!
+[05.07.2019 12:45:12.777]:AT server lives on COM5!
+[05.07.2019 12:45:13.764]:AT server lives on COM5!
+[05.07.2019 12:45:14.752]:AT server lives on COM5!
+[05.07.2019 12:45:15.724]:AT server lives on COM5!
+[05.07.2019 12:45:16.711]:AT server lives on COM5!
+[05.07.2019 12:45:17.698]:AT server lives on COM5!
+[05.07.2019 12:45:18.671]:AT server lives on COM5!
+[05.07.2019 12:45:19.657]:AT server lives on COM5!
+[05.07.2019 12:45:20.646]:AT server lives on COM5!
+[05.07.2019 12:45:21.632]:AT server lives on COM5!
+[05.07.2019 12:45:22.637]:AT server lives on COM5!
+[05.07.2019 12:45:23.626]:AT server lives on COM5!
+[05.07.2019 12:45:24.613]:AT server lives on COM5!
+[05.07.2019 12:45:25.585]:AT server lives on COM5!
+[05.07.2019 12:45:26.588]:AT server lives on COM5!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:00:59.208]:Source file with RSS feed is: H:\VS2017\SMS_server\SMS_server\bin\Debug\rss.xml!
+[05.07.2019 13:00:59.228]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:00:59.233]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:00:59.238]:Loading cache file!
+[05.07.2019 13:00:59.654]:Cache file loaded sucesfully!
+[05.07.2019 13:00:59.659]:Cheching for cache file consistency!
+[05.07.2019 13:00:59.738]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 13:00:59.825]:Cache file structure created succesfully!
+[05.07.2019 13:01:00.354]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:01:00.980]:AT server is on COM5!
+[05.07.2019 13:01:01.601]:AT server lives on COM5!
+[05.07.2019 13:01:01.622]:First start of aplication! Control checksum does not exist! Parsing RSS feed...
+[05.07.2019 13:01:01.633]:Loading XML!
+[05.07.2019 13:01:01.643]:XML loaded succesfully!
+[05.07.2019 13:01:01.650]:Reading XML content...
+[05.07.2019 13:01:01.788]:Article 987 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:01.796]:Setting new values for article 987! Checksum: "6C-54-8F-FA-E4-95-23-29-AB-B9-06-A8-D7-E2-F1-3A".
+[05.07.2019 13:01:01.840]:Article 985 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:01.845]:Setting new values for article 985! Checksum: "D4-7B-31-F9-30-83-51-23-32-CE-8A-DB-49-15-7A-A6".
+[05.07.2019 13:01:01.885]:Article 980 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:01.890]:Setting new values for article 980! Checksum: "59-ED-02-D5-87-5E-68-E9-37-46-D1-0B-35-4F-90-EF".
+[05.07.2019 13:01:01.943]:Article 977 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:01.951]:Setting new values for article 977! Checksum: "7E-7A-1C-13-A8-84-54-38-02-AC-B4-F8-53-A9-0B-0F".
+[05.07.2019 13:01:02.004]:Article 988 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.012]:Setting new values for article 988! Checksum: "57-95-DA-F9-7C-85-63-D6-EB-FE-F6-A7-55-11-3D-B2".
+[05.07.2019 13:01:02.048]:Article 986 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.054]:Setting new values for article 986! Checksum: "35-5F-A8-FC-C7-A0-C7-08-E1-49-83-43-22-9F-8E-1A".
+[05.07.2019 13:01:02.096]:Article 983 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.101]:Setting new values for article 983! Checksum: "57-38-25-D7-0E-E4-B5-85-4F-00-5C-E4-80-21-92-3D".
+[05.07.2019 13:01:02.145]:Article 982 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.151]:Setting new values for article 982! Checksum: "B8-FB-C5-58-BF-5D-23-54-4F-A4-C8-22-3B-FD-CC-5A".
+[05.07.2019 13:01:02.193]:Article 981 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.201]:Setting new values for article 981! Checksum: "95-FE-E3-93-B2-65-08-A1-CA-A8-26-65-48-DE-63-56".
+[05.07.2019 13:01:02.241]:Article 979 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:01:02.246]:Setting new values for article 979! Checksum: "D3-AF-30-10-11-92-77-A3-C2-D6-B1-1D-FB-1B-1B-16".
+[05.07.2019 13:01:02.279]:From least update 10 articles was added or changed!
+[05.07.2019 13:01:02.293]:List of phone numbers exists! Parsing...
+[05.07.2019 13:01:02.302]:List of phone numbers contains 1 phone numbers!
+[05.07.2019 13:01:02.316]:STARTING SMS SENDING JOB!
+[05.07.2019 13:01:02.322]:Setting message format!
+[05.07.2019 13:01:02.344]:Message format succesfully set!
+[05.07.2019 13:01:02.360]:Encoding succesfully set!
+[05.07.2019 13:01:02.365]:STARTING JOB FOR NUMBER 00420777808335!
+[05.07.2019 13:01:02.374]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:02.385]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:02.393]:Setting recipient number succesfull!
+[05.07.2019 13:01:02.400]:Sending message body!
+[05.07.2019 13:01:02.501]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:01:15.376]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:01:15.383]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:15.390]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:15.403]:Setting recipient number succesfull!
+[05.07.2019 13:01:15.408]:Sending message body!
+[05.07.2019 13:01:15.467]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:01:21.971]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:01:21.978]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:21.987]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:21.998]:Setting recipient number succesfull!
+[05.07.2019 13:01:22.003]:Sending message body!
+[05.07.2019 13:01:22.176]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:01:42.681]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:01:42.686]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:42.693]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:42.707]:Setting recipient number succesfull!
+[05.07.2019 13:01:42.714]:Sending message body!
+[05.07.2019 13:01:42.764]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:01:46.688]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:01:46.694]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:46.701]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:46.715]:Setting recipient number succesfull!
+[05.07.2019 13:01:46.721]:Sending message body!
+[05.07.2019 13:01:46.818]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:01:50.935]:SMS was sent to server itself! Critical stop!
+[05.07.2019 13:01:57.990]:Setting recipient number to 00420777808335!
+[05.07.2019 13:01:57.997]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:01:58.017]:Setting recipient number succesfull!
+[05.07.2019 13:01:58.023]:Sending message body!
+[05.07.2019 13:01:58.112]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:02:08.104]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:02:08.111]:Setting recipient number to 00420777808335!
+[05.07.2019 13:02:08.120]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:02:08.132]:Setting recipient number succesfull!
+[05.07.2019 13:02:08.138]:Sending message body!
+[05.07.2019 13:02:08.181]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:02:11.868]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:02:11.876]:Setting recipient number to 00420777808335!
+[05.07.2019 13:02:11.884]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:02:11.895]:Setting recipient number succesfull!
+[05.07.2019 13:02:11.903]:Sending message body!
+[05.07.2019 13:02:11.953]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:02:15.878]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:02:15.884]:Setting recipient number to 00420777808335!
+[05.07.2019 13:02:15.897]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:02:15.918]:Setting recipient number succesfull!
+[05.07.2019 13:02:15.925]:Sending message body!
+[05.07.2019 13:02:15.976]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:02:42.549]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:02:42.554]:Setting recipient number to 00420777808335!
+[05.07.2019 13:02:42.562]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:02:42.577]:Setting recipient number succesfull!
+[05.07.2019 13:02:42.583]:Sending message body!
+[05.07.2019 13:02:42.650]:Sending message body succesfull! Waiting for SMS to send!
+[05.07.2019 13:02:49.378]:SMS to number 00420777808335 succesfully sent!
+[05.07.2019 13:02:49.385]:JOB FOR NUMBER 00420777808335 COMPLETED!
+[05.07.2019 13:02:49.504]:SMS SENDING JOB FINISHED!
+[05.07.2019 13:02:50.476]:AT server lives on COM5!
+[05.07.2019 13:02:51.479]:AT server lives on COM5!
+[05.07.2019 13:02:52.466]:AT server lives on COM5!
+[05.07.2019 13:02:53.437]:AT server lives on COM5!
+[05.07.2019 13:02:54.440]:AT server lives on COM5!
+[05.07.2019 13:02:55.428]:AT server lives on COM5!
+[05.07.2019 13:02:56.416]:AT server lives on COM5!
+[05.07.2019 13:02:57.404]:AT server lives on COM5!
+[05.07.2019 13:02:58.390]:AT server lives on COM5!
+[05.07.2019 13:02:59.378]:AT server lives on COM5!
+[05.07.2019 13:03:00.349]:AT server lives on COM5!
+[05.07.2019 13:03:01.322]:AT server lives on COM5!
+[05.07.2019 13:03:02.309]:AT server lives on COM5!
+[05.07.2019 13:03:03.296]:AT server lives on COM5!
+[05.07.2019 13:03:04.285]:AT server lives on COM5!
+[05.07.2019 13:03:05.272]:AT server lives on COM5!
+[05.07.2019 13:03:06.259]:AT server lives on COM5!
+[05.07.2019 13:03:07.248]:AT server lives on COM5!
+[05.07.2019 13:03:08.235]:AT server lives on COM5!
+[05.07.2019 13:03:09.222]:AT server lives on COM5!
+[05.07.2019 13:03:10.211]:AT server lives on COM5!
+[05.07.2019 13:03:11.199]:AT server lives on COM5!
+[05.07.2019 13:03:12.187]:AT server lives on COM5!
+[05.07.2019 13:03:13.175]:AT server lives on COM5!
+[05.07.2019 13:03:14.162]:AT server lives on COM5!
+[05.07.2019 13:03:15.150]:AT server lives on COM5!
+[05.07.2019 13:03:16.137]:AT server lives on COM5!
+[05.07.2019 13:03:17.125]:AT server lives on COM5!
+[05.07.2019 13:03:18.111]:AT server lives on COM5!
+[05.07.2019 13:03:19.099]:AT server lives on COM5!
+[05.07.2019 13:03:20.086]:AT server lives on COM5!
+[05.07.2019 13:03:21.073]:AT server lives on COM5!
+[05.07.2019 13:03:22.061]:AT server lives on COM5!
+[05.07.2019 13:03:23.065]:AT server lives on COM5!
+[05.07.2019 13:03:24.051]:AT server lives on COM5!
+[05.07.2019 13:03:25.041]:AT server lives on COM5!
+[05.07.2019 13:03:26.027]:AT server lives on COM5!
+[05.07.2019 13:03:27.014]:AT server lives on COM5!
+[05.07.2019 13:03:28.001]:AT server lives on COM5!
+[05.07.2019 13:03:28.989]:AT server lives on COM5!
+[05.07.2019 13:03:29.992]:AT server lives on COM5!
+[05.07.2019 13:03:30.980]:AT server lives on COM5!
+[05.07.2019 13:03:31.968]:AT server lives on COM5!
+[05.07.2019 13:03:32.955]:AT server lives on COM5!
+[05.07.2019 13:03:33.943]:AT server lives on COM5!
+[05.07.2019 13:03:34.930]:AT server lives on COM5!
+[05.07.2019 13:03:35.918]:AT server lives on COM5!
+[05.07.2019 13:03:36.906]:AT server lives on COM5!
+[05.07.2019 13:03:37.878]:AT server lives on COM5!
+[05.07.2019 13:03:38.865]:AT server lives on COM5!
+[05.07.2019 13:03:39.853]:AT server lives on COM5!
+[05.07.2019 13:03:40.841]:AT server lives on COM5!
+[05.07.2019 13:03:41.812]:AT server lives on COM5!
+[05.07.2019 13:03:42.801]:AT server lives on COM5!
+[05.07.2019 13:03:43.787]:AT server lives on COM5!
+[05.07.2019 13:03:44.775]:AT server lives on COM5!
+[05.07.2019 13:03:45.763]:AT server lives on COM5!
+[05.07.2019 13:03:46.751]:AT server lives on COM5!
+[05.07.2019 13:03:47.738]:AT server lives on COM5!
+[05.07.2019 13:03:48.724]:AT server lives on COM5!
+[05.07.2019 13:03:49.712]:AT server lives on COM5!
+[05.07.2019 13:03:50.699]:AT server lives on COM5!
+[05.07.2019 13:03:51.688]:AT server lives on COM5!
+[05.07.2019 13:03:52.675]:AT server lives on COM5!
+[05.07.2019 13:03:53.663]:AT server lives on COM5!
+[05.07.2019 13:03:54.634]:AT server lives on COM5!
+[05.07.2019 13:03:55.607]:AT server lives on COM5!
+[05.07.2019 13:03:56.594]:AT server lives on COM5!
+[05.07.2019 13:03:57.583]:AT server lives on COM5!
+[05.07.2019 13:03:58.569]:AT server lives on COM5!
+[05.07.2019 13:03:59.556]:AT server lives on COM5!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:05:12.655]:Source file with RSS feed is: H:\VS2017\SMS_server\SMS_server\bin\Debug\rss.xml!
+[05.07.2019 13:05:12.669]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:05:12.676]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:05:12.681]:Loading cache file!
+[05.07.2019 13:05:13.073]:Cache file loaded sucesfully!
+[05.07.2019 13:05:13.078]:Cheching for cache file consistency!
+[05.07.2019 13:05:13.146]:Cheching for cache file consistency failed! Creating new empty cache file!
+[05.07.2019 13:05:13.200]:Cache file structure created succesfully!
+[05.07.2019 13:05:13.723]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:05:14.353]:AT server is on COM5!
+[05.07.2019 13:05:14.974]:AT server lives on COM5!
+[05.07.2019 13:05:14.992]:First start of aplication! Control checksum does not exist! Parsing RSS feed...
+[05.07.2019 13:05:15.001]:Loading XML!
+[05.07.2019 13:05:15.009]:XML loaded succesfully!
+[05.07.2019 13:05:15.015]:Reading XML content...
+[05.07.2019 13:05:15.152]:Article 987 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.159]:Setting new values for article 987! Checksum: "6C-54-8F-FA-E4-95-23-29-AB-B9-06-A8-D7-E2-F1-3A".
+[05.07.2019 13:05:15.202]:Article 985 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.206]:Setting new values for article 985! Checksum: "D4-7B-31-F9-30-83-51-23-32-CE-8A-DB-49-15-7A-A6".
+[05.07.2019 13:05:15.248]:Article 980 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.253]:Setting new values for article 980! Checksum: "59-ED-02-D5-87-5E-68-E9-37-46-D1-0B-35-4F-90-EF".
+[05.07.2019 13:05:15.297]:Article 977 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.301]:Setting new values for article 977! Checksum: "7E-7A-1C-13-A8-84-54-38-02-AC-B4-F8-53-A9-0B-0F".
+[05.07.2019 13:05:15.344]:Article 988 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.349]:Setting new values for article 988! Checksum: "57-95-DA-F9-7C-85-63-D6-EB-FE-F6-A7-55-11-3D-B2".
+[05.07.2019 13:05:15.390]:Article 986 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.395]:Setting new values for article 986! Checksum: "35-5F-A8-FC-C7-A0-C7-08-E1-49-83-43-22-9F-8E-1A".
+[05.07.2019 13:05:15.433]:Article 983 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.438]:Setting new values for article 983! Checksum: "57-38-25-D7-0E-E4-B5-85-4F-00-5C-E4-80-21-92-3D".
+[05.07.2019 13:05:15.481]:Article 982 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.485]:Setting new values for article 982! Checksum: "B8-FB-C5-58-BF-5D-23-54-4F-A4-C8-22-3B-FD-CC-5A".
+[05.07.2019 13:05:15.526]:Article 981 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.531]:Setting new values for article 981! Checksum: "95-FE-E3-93-B2-65-08-A1-CA-A8-26-65-48-DE-63-56".
+[05.07.2019 13:05:15.582]:Article 979 does not have record! Adding to SMS job as new article!
+[05.07.2019 13:05:15.587]:Setting new values for article 979! Checksum: "D3-AF-30-10-11-92-77-A3-C2-D6-B1-1D-FB-1B-1B-16".
+[05.07.2019 13:05:15.631]:From least update 10 articles was added or changed!
+[05.07.2019 13:05:15.645]:List of phone numbers exists! Parsing...
+[05.07.2019 13:05:15.654]:List of phone numbers contains 3 phone numbers!
+[05.07.2019 13:05:15.671]:STARTING SMS SENDING JOB!
+[05.07.2019 13:05:15.677]:Setting message format!
+[05.07.2019 13:05:15.701]:Message format succesfully set!
+[05.07.2019 13:05:15.717]:Encoding succesfully set!
+[05.07.2019 13:05:15.723]:STARTING JOB FOR NUMBER 00420722555716!
+[05.07.2019 13:05:15.728]:Setting recipient number to 00420722555716!
+[05.07.2019 13:05:15.734]:Request sent! Waiting for confirming 0x3E char!
+[05.07.2019 13:05:15.749]:Setting recipient number succesfull!
+[05.07.2019 13:05:15.755]:Sending message body!
+[05.07.2019 13:05:15.856]:Sending message body succesfull! Waiting for SMS to send!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:08:05.319]:Source file with RSS feed is: http://mujweb/admin/kiosek/feed.xml!
+[05.07.2019 13:08:05.333]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:08:05.339]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:08:05.345]:Loading cache file!
+[05.07.2019 13:08:05.760]:Cache file loaded sucesfully!
+[05.07.2019 13:08:05.771]:Cheching for cache file consistency!
+[05.07.2019 13:08:05.847]:Cheching for cache file consistency succeed!
+[05.07.2019 13:08:06.364]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:08:06.996]:AT server is on COM5!
+[05.07.2019 13:08:07.617]:AT server lives on COM5!
+[05.07.2019 13:08:07.645]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:08.619]:AT server lives on COM5!
+[05.07.2019 13:08:08.630]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:09.607]:AT server lives on COM5!
+[05.07.2019 13:08:09.625]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:10.595]:AT server lives on COM5!
+[05.07.2019 13:08:10.614]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:11.598]:AT server lives on COM5!
+[05.07.2019 13:08:11.609]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:12.586]:AT server lives on COM5!
+[05.07.2019 13:08:12.605]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:13.589]:AT server lives on COM5!
+[05.07.2019 13:08:13.610]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:14.594]:AT server lives on COM5!
+[05.07.2019 13:08:14.613]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:15.597]:AT server lives on COM5!
+[05.07.2019 13:08:15.610]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:16.585]:AT server lives on COM5!
+[05.07.2019 13:08:16.595]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:17.573]:AT server lives on COM5!
+[05.07.2019 13:08:17.590]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:18.560]:AT server lives on COM5!
+[05.07.2019 13:08:18.577]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:19.547]:AT server lives on COM5!
+[05.07.2019 13:08:19.558]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:20.534]:AT server lives on COM5!
+[05.07.2019 13:08:20.548]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:21.523]:AT server lives on COM5!
+[05.07.2019 13:08:21.543]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:22.526]:AT server lives on COM5!
+[05.07.2019 13:08:22.540]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:23.514]:AT server lives on COM5!
+[05.07.2019 13:08:23.526]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:24.501]:AT server lives on COM5!
+[05.07.2019 13:08:24.511]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:25.489]:AT server lives on COM5!
+[05.07.2019 13:08:25.505]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:26.477]:AT server lives on COM5!
+[05.07.2019 13:08:26.489]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:27.465]:AT server lives on COM5!
+[05.07.2019 13:08:27.482]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:28.453]:AT server lives on COM5!
+[05.07.2019 13:08:28.464]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:29.441]:AT server lives on COM5!
+[05.07.2019 13:08:29.455]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:30.427]:AT server lives on COM5!
+[05.07.2019 13:08:30.445]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:31.431]:AT server lives on COM5!
+[05.07.2019 13:08:31.443]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:32.418]:AT server lives on COM5!
+[05.07.2019 13:08:32.434]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+[05.07.2019 13:08:33.406]:AT server lives on COM5!
+[05.07.2019 13:08:33.418]:XML file with RSS feed "http://mujweb/admin/kiosek/feed.xml" does not exists! Skipping job...
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:08:53.647]:Source file with RSS feed is: http://mujweb/admin/kiosek/feed.xml!
+[05.07.2019 13:08:53.660]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:08:53.665]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:08:53.670]:Loading cache file!
+[05.07.2019 13:08:54.059]:Cache file loaded sucesfully!
+[05.07.2019 13:08:54.066]:Cheching for cache file consistency!
+[05.07.2019 13:08:54.144]:Cheching for cache file consistency succeed!
+[05.07.2019 13:08:54.665]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:08:55.296]:AT server is on COM5!
+[05.07.2019 13:08:55.918]:AT server lives on COM5!
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:10:20.544]:Source file with RSS feed is: http://mujweb/admin/kiosek/feed.xml!
+[05.07.2019 13:10:20.558]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:10:20.564]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:10:20.571]:Loading cache file!
+[05.07.2019 13:10:20.986]:Cache file loaded sucesfully!
+[05.07.2019 13:10:20.992]:Cheching for cache file consistency!
+[05.07.2019 13:10:21.066]:Cheching for cache file consistency succeed!
+[05.07.2019 13:10:21.636]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:10:22.268]:AT server is on COM5!
+[05.07.2019 13:10:22.905]:AT server lives on COM5!
+[05.07.2019 13:10:22.914]:XML feed changed from last update! Parsing RSS feed...
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:12:12.357]:Source file with RSS feed is: http://mujweb/admin/kiosek/feed.xml!
+[05.07.2019 13:12:12.370]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:12:12.376]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:12:12.383]:Loading cache file!
+[05.07.2019 13:12:12.749]:Cache file loaded sucesfully!
+[05.07.2019 13:12:12.755]:Cheching for cache file consistency!
+[05.07.2019 13:12:12.837]:Cheching for cache file consistency succeed!
+[05.07.2019 13:12:13.359]:On COM1 is not AT server, because no response was received in time limit!
+[05.07.2019 13:12:13.985]:AT server is on COM5!
+[05.07.2019 13:12:14.605]:AT server lives on COM5!
+[05.07.2019 13:12:14.614]:XML feed changed from last update! Parsing RSS feed...
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:16:51.621]:Source file with RSS feed is: http://mujweb/admin/kiosek/feed.xml!
+[05.07.2019 13:16:51.634]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:16:51.654]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:16:51.661]:Loading cache file!
+[05.07.2019 13:16:52.076]:Cache file loaded sucesfully!
+[05.07.2019 13:16:52.083]:Cheching for cache file consistency!
+[05.07.2019 13:16:52.155]:Cheching for cache file consistency succeed!
+[05.07.2019 13:16:52.698]:COM1 can´t be opened!
+[05.07.2019 13:16:53.318]:AT server is on COM5!
+[05.07.2019 13:16:53.939]:AT server lives on COM5!
+[05.07.2019 13:16:53.947]:XML feed changed from last update! Parsing RSS feed...
+--------------------------
+-------PROGRAM INIT-------
+--------------------------
+[05.07.2019 13:18:03.604]:Source file with RSS feed is: https://raw.githubusercontent.com/JachyHm/SMS_serv/master/rss.xml?token=AGILRE5HGHBZWPWWHZILAMC42FUYG!
+[05.07.2019 13:18:03.620]:Source file with phone numbers is: H:\VS2017\SMS_server\SMS_server\bin\Debug\cisla.num!
+[05.07.2019 13:18:03.625]:Configuration file loaded and parsed sucesfully!
+[05.07.2019 13:18:03.632]:Loading cache file!
+[05.07.2019 13:18:04.090]:Cache file loaded sucesfully!
+[05.07.2019 13:18:04.096]:Cheching for cache file consistency!
+[05.07.2019 13:18:04.168]:Cheching for cache file consistency succeed!
+[05.07.2019 13:18:04.738]:COM1 can´t be opened!
+[05.07.2019 13:18:05.367]:AT server is on COM5!
+[05.07.2019 13:18:05.988]:AT server lives on COM5!
+[05.07.2019 13:18:05.996]:XML feed changed from last update! Parsing RSS feed...
