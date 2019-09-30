@@ -148,7 +148,15 @@ namespace SMS_server
 
         static SQLiteConnection sqlite_conn;                                                    //databaze SQLite
 
-        private static void GetATCOM()                                                          //projdi vsechny comy, posli 'AT' a cekej 500ms na odpoved
+        static Dictionary<char, char> charsToReplace = new Dictionary<char, char> {
+            { (char)0x13, '-' },
+            { (char)0x1C, '"' },
+            { (char)0x1D, '"' },
+            { (char)0x1E, '"' },
+            { (char)0x1F, '"' }
+        };
+
+        private static void GetATCOM(Boolean recursive = false)                                                          //projdi vsechny comy, posli 'AT' a cekej 500ms na odpoved
         {
             string[] portsList = SerialPort.GetPortNames();             //nacti seznam vsech comPortu
 
@@ -190,9 +198,10 @@ namespace SMS_server
                 }
             }
             //pokud dojde az sem na zadnem COM neni AT, pockej na user response a rekurzivne zavolej sam sebe
-            Log("AT server is not connected to computer!", false, true, true); // Please connect it and press any key to retry!
+            Log("AT server is not connected to computer!", false, !recursive, true); // Please connect it and press any key to retry!
             //Console.ReadKey();
-            GetATCOM();
+            System.Threading.Thread.Sleep(1000);
+            GetATCOM(true);
         }
 
         private static void CheckForATonCOM(string comPort)                                     //zkontroluj, jestli AT server zije [comPort]
@@ -300,7 +309,7 @@ namespace SMS_server
             string dateTimeString = String.Empty;                   //definuj datetime string
             if (!blockDateTime)                                     //pokud neni blokovany zapis datetime
             {              //definuj promennou dateTime jako aktualni cas a zformatuj ji 
-                dateTimeString = dateTimeNow.ToString("[yyyy.MM.dd HH:mm:ss.fff]:", CultureInfo.InvariantCulture);
+                dateTimeString = dateTimeNow.ToString("[yyyy.MM.dd HH:mm:ss.fff]: ", CultureInfo.InvariantCulture);
             }
             using (StreamWriter fs = File.AppendText(@"sms.log"))   //otevri soubor sms.log pro appendovani jako fs
             {
@@ -707,7 +716,7 @@ namespace SMS_server
                 string id = XMLclanek.GetElementsByTagName("guid")[0].InnerText;
                 id = id.Substring(id.IndexOf("ID=") + 3);
                 string nazev = XMLclanek.GetElementsByTagName("title")[0].InnerText.Trim();
-                string autor = XMLclanek.GetElementsByTagName("author")[0].InnerText;
+                string autor = XMLclanek.GetElementsByTagName("author")[0].InnerText.Trim();
                 autor = autor.Substring(0, 3) + autor.Substring(autor.IndexOf(" ") + 1, 3);
                 string obsah = XMLclanek.GetElementsByTagName("description")[0].InnerText.Trim();
                 obsah = Regex.Replace(obsah, @"\p{C}+", string.Empty);
@@ -728,6 +737,10 @@ namespace SMS_server
                 nazev = HtmlUtilities.ConvertToPlainText(nazev);
                 string obsah_bezPriloh = obsah.Substring(0, Math.Max(obsah.IndexOf("Attachments:")-1,0));
                 obsah = obsah.Replace("Attachments:", string.Empty).Replace("Body:", string.Empty).Replace((char)0xA0,(char)0x20);
+                foreach(KeyValuePair<char, char> pair in charsToReplace)
+                {
+                    obsah = obsah.Replace(pair.Key, pair.Value);
+                }
                 nazev = nazev.Replace((char)0xA0, (char)0x20);
                 if (obsah.Length > 700)
                 {
@@ -789,8 +802,8 @@ namespace SMS_server
                 {
                     verbose = false;
                 }
-                Log(String.Format("Source file with RSS feed is: {0}!", feedFName));
-                Log(String.Format("Source file with teachers RSS feed is: {0}!", teachersFeedFName));
+                Log(String.Format("Source file with RSS feed is: {0}, ", feedFName) + ((CheckIsLocalPath(feedFName)) ? "which appears to be local file!" : "which appears to be an URL!"));
+                Log(String.Format("Source file with teachers RSS feed is: {0}!", teachersFeedFName) + ((CheckIsLocalPath(teachersFeedFName)) ? "which appears to be local file!" : "which appears to be an URL!"));
                 telNum_fname = data["GeneralConfiguration"]["numbersList"];
                 telNumTeacher_fname = data["GeneralConfiguration"]["teachersNumbersList"];
                 Log(String.Format("Source file with phone numbers is: {0}!", telNum_fname));
@@ -811,7 +824,7 @@ namespace SMS_server
                 sqlite_conn.Open();
                 Log("Cache file loaded sucesfully!");
 
-                Log("Cheching for cache file consistency!");
+                Log("Checking for cache file consistency!");
                 SQLiteCommand command = new SQLiteCommand(sqlite_conn)
                 {
                     CommandText = "SELECT name FROM sqlite_master WHERE name='newArticles'"
@@ -820,11 +833,11 @@ namespace SMS_server
                 command.Dispose();
                 if (tableName != null && tableName.ToString() == "newArticles")
                 {
-                    Log("Cheching for cache file consistency succeed!");
+                    Log("Checking for cache file consistency succeed!");
                 }
                 else
                 {
-                    Log("Cheching for cache file consistency failed! Creating new empty cache file!");
+                    Log("Checking for cache file consistency failed! Creating new empty cache file!");
                     CreateCacheFileStruct();
                 }
             }
