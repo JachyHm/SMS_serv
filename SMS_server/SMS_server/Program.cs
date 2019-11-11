@@ -156,7 +156,7 @@ namespace SMS_server
             { (char)0x1F, '"' }
         };
 
-        private static void GetATCOM(Boolean recursive = false)                                                          //projdi vsechny comy, posli 'AT' a cekej 500ms na odpoved
+        private static void GetATCOM(Boolean recursive = false)                                 //projdi vsechny comy, posli 'AT' a cekej 500ms na odpoved
         {
             string[] portsList = SerialPort.GetPortNames();             //nacti seznam vsech comPortu
 
@@ -381,6 +381,20 @@ namespace SMS_server
                 string[] telNum_lines = telNum_content.Split('\n');
                 if (telNum_lines.Length > 0 && !string.IsNullOrEmpty(telNum_content))
                 {
+                    long smsCount = 0;
+                    if (File.Exists("sms.count"))
+                    {
+                        try
+                        {
+                            smsCount = Convert.ToInt64(File.ReadAllText("sms.count"));
+                        } catch { }
+                    }
+
+                    long intranetSMSToSend = telNum_lines.LongLength * newArticles.LongCount();
+                    long sentSMS = 0;
+                    float progress = 0;
+                    string progressString = "[                              ]";
+
                     string whoString;
                     if (isTeacher)
                     {
@@ -429,6 +443,18 @@ namespace SMS_server
                                                     Log(String.Format("STARTING JOB FOR NUMBER {0} - {1}!", telNum_asStringTrimmed, recipient_name));
                                                     foreach (string[] article in newArticles)
                                                     {
+                                                        progress = (float) sentSMS / intranetSMSToSend;
+                                                        progressString = "[";
+                                                        for (int i = 0; i < Math.Round(progress*50); i++)
+                                                        {
+                                                            progressString += "#";
+                                                        }
+                                                        while (progressString.Length < 51)
+                                                        {
+                                                            progressString += " ";
+                                                        }
+                                                        progressString += "]";
+
                                                         Log(String.Format("Setting recipient number to {0} - {1}!", telNum_asStringTrimmed, recipient_name));
                                                         string title;
                                                         if (isTeacher)
@@ -439,6 +465,11 @@ namespace SMS_server
                                                         {
                                                             title = "INTRANET";
                                                         }
+                                                        Log(String.Format("Sending message {0} out of {1} for {2}...", sentSMS, intranetSMSToSend, title), false, true);
+                                                        Log(String.Format("Actual progress is {0}%.", progress*100));
+                                                        Log(progressString);
+                                                        Log(String.Format("Total SMS sent: {0}", smsCount));
+
                                                         string header = String.Format("Nove oznameni {0} od ", title);
                                                         if (article[6] == "EDIT")
                                                         {
@@ -487,10 +518,14 @@ namespace SMS_server
                                                         if (response.Length < 2)
                                                         {
                                                             Log(String.Format("SMS was probably not send, because response is unknown: {0}", response[0]));
+                                                            sentSMS++;
+                                                            File.WriteAllText("sms.count", smsCount.ToString());
                                                         }
                                                         if (response[1].Contains("ME"))
                                                         {
                                                             Log("SMS was sent to server itself! Critical stop!");
+                                                            sentSMS++;
+                                                            File.WriteAllText("sms.count", smsCount.ToString());
                                                             while (portHandler.BytesToRead == 0) System.Threading.Thread.Sleep(500); ;
                                                             System.Threading.Thread.Sleep(500);
                                                             portHandler.DiscardInBuffer();
@@ -498,10 +533,15 @@ namespace SMS_server
                                                         else if (response[3].Contains("OK"))
                                                         {
                                                             Log(String.Format("SMS to number {0} - {1} succesfully sent!", telNum_asStringTrimmed, recipient_name));
+                                                            smsCount++;
+                                                            sentSMS++;
+                                                            File.WriteAllText("sms.count", smsCount.ToString());
                                                         }
                                                         else
                                                         {
                                                             Log(String.Format("Sending SMS to number {0} - {1} failed!", telNum_asStringTrimmed, recipient_name));
+                                                            sentSMS++;
+                                                            File.WriteAllText("sms.count", smsCount.ToString());
                                                         }
                                                     }
                                                     Log(String.Format("JOB FOR NUMBER {0} - {1} COMPLETED!", telNum_asStringTrimmed, recipient_name));
@@ -750,8 +790,9 @@ namespace SMS_server
                 {
                     nazev = nazev.Substring(0, 100) + "...";
                 }
-                string link = XMLclanek.GetElementsByTagName("link")[0].InnerText;
-                string datum = XMLclanek.GetElementsByTagName("pubDate")[0].InnerText;
+                obsah = obsah.Trim();
+                string link = XMLclanek.GetElementsByTagName("link")[0].InnerText.Trim();
+                string datum = XMLclanek.GetElementsByTagName("pubDate")[0].InnerText.Trim();
                 if (!string.IsNullOrEmpty(GetChecksumForID(Convert.ToInt32(id))))
                 {
                     if (CalcMD5(obsah_bezPriloh) == GetChecksumForID(Convert.ToInt32(id)) || string.IsNullOrWhiteSpace(obsah_bezPriloh))

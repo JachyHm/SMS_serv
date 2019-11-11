@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="SMS_server.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="SMS_server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="SMS_server" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="SMS_server.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMS_server.exe" size="25560">
-      <assemblyIdentity name="SMS_server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMS_server.exe" size="26584">
+      <assemblyIdentity name="SMS_server" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UbBesuvGNanVyf44lAiu/OZ0mQqI2FE0nehuiyxRPyM=</dsig:DigestValue>
+        <dsig:DigestValue>IrYQEuNVdZV3uBkt7hdBOdt2sIWjyG6y3FsaQcmWaZ4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
