@@ -134,4 +134,5 @@ J:\2020\hurtik116\SMS_server\SMS_server\obj\Release\SMS_server.application
 J:\2020\hurtik116\SMS_server\SMS_server\obj\Release\SMS_server.csproj.CopyComplete
 J:\2020\hurtik116\SMS_server\SMS_server\obj\Release\SMS_server.exe
 J:\2020\hurtik116\SMS_server\SMS_server\obj\Release\SMS_server.pdb
-H:\SMS_server\SMS_server\obj\Release\SMS_server.csprojResolveAssemblyReference.cache
+H:\SMS_server\SMS_server\obj\Release\SMS_server.csprojAssemblyReference.cache
+H:\SMS_server\SMS_server\obj\Release\SMS_server.csproj.CopyComplete

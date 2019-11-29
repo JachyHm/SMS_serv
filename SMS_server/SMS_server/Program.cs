@@ -1,17 +1,12 @@
 ﻿using System;
 using System.IO.Ports;
-using System.Threading;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Xml;
-using System.Xml.Linq;
 using System.Security.Cryptography;
-using System.Timers;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;     // DLL support
 using IniParser;
 using IniParser.Model;
 using System.Text;
@@ -19,10 +14,6 @@ using System.Data.SQLite;
 using HtmlAgilityPack;
 using System.Net;
 using System.Diagnostics;
-using System.Data.SqlClient;
-using System.Data;
-/*using System.ServiceModel;
-using System.ServiceModel.Syndication;*/
 
 namespace SMS_server
 {
@@ -56,17 +47,6 @@ namespace SMS_server
             return !String.IsNullOrEmpty(plainText) ? plainText.Split(' ', '\n').Length : 0;
         }
 
-
-        public static string Cut(string text, int length)
-        {
-            if (!String.IsNullOrEmpty(text) && text.Length > length)
-            {
-                text = text.Substring(0, length - 4) + " ...";
-            }
-            return text;
-        }
-
-
         private static void ConvertContentTo(HtmlNode node, TextWriter outText)
         {
             foreach (HtmlNode subnode in node.ChildNodes)
@@ -74,8 +54,7 @@ namespace SMS_server
                 ConvertTo(subnode, outText);
             }
         }
-
-
+        
         private static void ConvertTo(HtmlNode node, TextWriter outText)
         {
             string html;
@@ -142,6 +121,8 @@ namespace SMS_server
 
         static string comPort;                                                                  //COM port
 
+        static SerialPort portHandler;                                                          //port handler
+
         static bool verbose = true;                                                             //vypisuj log do command okna
 
         static int updateInt = 1000;                                                            //update interval
@@ -164,15 +145,25 @@ namespace SMS_server
             {
                 try
                 {
-                    //definuj handler pro seriovy port port
-                    SerialPort portHandler = new System.IO.Ports.SerialPort(
-                        port, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
-                    portHandler.WriteTimeout = 500;
-                    portHandler.Open();                                 //otevri port
+                    //pokud je otevreny jiny nez iterovany port - zavri ho
+                    if (portHandler != null && portHandler.IsOpen &&portHandler.PortName != port)
+                    {
+                        portHandler.Close();
+                    }
+
+                    //pokud neni otevreny zadny port
+                    if (portHandler == null || !portHandler.IsOpen)
+                    {
+                        //(pre)definuj handler pro seriovy port port
+                        portHandler = new System.IO.Ports.SerialPort(
+                            port, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
+                        portHandler.WriteTimeout = 500;
+                        portHandler.Open();                             //otevri port
+                    }
+
                     portHandler.Write("AT\r");                          //posli 'AT'
                     System.Threading.Thread.Sleep(500);                 //cekej 500ms
                     string messageReaded = portHandler.ReadExisting();  //precti odpoved
-                    portHandler.Close();                                //zavri COM
                     if (messageReaded.Contains("AT\r\r\nOK\r\n"))       //pokud je odpoved 'AT OK', na COMu je AT server a je ok
                     {
                         comPort = port;                                 //tj zapis port do staticke promenne comPort
@@ -181,6 +172,7 @@ namespace SMS_server
                     }
                     else                                                //pokud odpoved neni 'AT OK'
                     {
+                        portHandler.Close();                            //zavri COM
                         if (!string.IsNullOrEmpty(messageReaded))       //pak pokud zarizeni odpovedelo, neni to AT server
                         {
                             Log(String.Format("On {0} is not AT server, because response was \"{1}\"!", port, messageReaded.Replace("\r", "")));
@@ -208,15 +200,9 @@ namespace SMS_server
         {
             try
             {
-                //definuj handler pro seriovy port port
-                SerialPort portHandler = new System.IO.Ports.SerialPort(
-                    comPort, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
-                portHandler.WriteTimeout = 500;
-                portHandler.Open();                                 //otevri port
                 portHandler.Write("AT\r");                          //posli 'AT'
                 System.Threading.Thread.Sleep(500);                 //cekej 500ms
                 string messageReaded = portHandler.ReadExisting();  //precti odpoved
-                portHandler.Close();                                //zavri COM
                 if (!messageReaded.Contains("AT\r\r\nOK\r\n"))      //pokud neni odpoved 'AT OK', neco je spatne, pockej na user response a rekurzivne se zavolej
                 {
                     Log(String.Format("AT server was disconnected or failed, because response is \"{0}\"!", messageReaded.Replace("\r", "")), false, true, true);
@@ -405,14 +391,11 @@ namespace SMS_server
                         whoString = "students";
                     }
                     Log(String.Format("List of {0} phone numbers contains {1} phone numbers!", whoString, telNum_lines.Length));
-                    SerialPort portHandler = new System.IO.Ports.SerialPort(
-                        comPort, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
-                    portHandler.WriteTimeout = 500;
-                    portHandler.Open();
                     Log(String.Format("STARTING SMS SENDING JOB FOR {0}!", whoString.ToUpper()));
                     Log("Setting message format!");
                     portHandler.Write("AT+CMGF=1\r");
                     while(portHandler.BytesToRead == 0);
+                    System.Threading.Thread.Sleep(300);
                     string[] response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
                     if (response.Length > 2)
                     {
@@ -421,6 +404,7 @@ namespace SMS_server
                             Log("Message format succesfully set!");
                             portHandler.Write("AT+CSCS=\"8859-1\"\r");
                             while (portHandler.BytesToRead == 0) ;
+                            System.Threading.Thread.Sleep(300);
                             response = portHandler.ReadExisting().Replace("\n", "").Split('\r');
                             if (response.Length > 2)
                             {
@@ -466,6 +450,7 @@ namespace SMS_server
                                                             title = "INTRANET";
                                                         }
                                                         Log(String.Format("Sending message {0} out of {1} for {2}...", sentSMS, intranetSMSToSend, title), false, true);
+                                                        Log(String.Format("Message ID is {0}!", article[0]));
                                                         Log(String.Format("Actual progress is {0}%.", progress*100));
                                                         Log(progressString);
                                                         Log(String.Format("Total SMS sent: {0}", smsCount));
@@ -506,6 +491,7 @@ namespace SMS_server
                                                         {
                                                             //portHandler.Write("AT+CMEE=2\r");
                                                             //while (portHandler.BytesToRead == 0) ;
+                                                            //System.Threading.Thread.Sleep(300);
                                                             //portHandler.DiscardInBuffer();
                                                             Log(String.Format("AT server returned ERROR state while sending message body! Skipping message!"));
                                                             System.Threading.Thread.Sleep(1000);
@@ -577,12 +563,16 @@ namespace SMS_server
                         {
                             Log(String.Format("Unable to set message format! Error: {0}!", response[2]));
                         }
-                        portHandler.Close();
                         Log(String.Format("SMS SENDING JOB FOR {0} FINISHED!", whoString.ToUpper()));
                     }
                     else
                     {
-                        Log("Unable to set message format! Invalid AT server response!");
+                        string serialized = "";
+                        foreach (string s in response)
+                        {
+                            serialized += s+"; ";
+                        }
+                        Log(String.Format("Unable to set message format! Invalid AT server response! Message was: '{0}'", serialized));
                     }
                 }
                 else
@@ -757,7 +747,10 @@ namespace SMS_server
                 id = id.Substring(id.IndexOf("ID=") + 3);
                 string nazev = XMLclanek.GetElementsByTagName("title")[0].InnerText.Trim();
                 string autor = XMLclanek.GetElementsByTagName("author")[0].InnerText.Trim();
-                autor = autor.Substring(0, 3) + autor.Substring(autor.IndexOf(" ") + 1, 3);
+                if (autor.Contains(" ") && autor.Length > 3)
+                {
+                    autor = autor.Substring(0, 3) + autor.Substring(autor.IndexOf(" ") + 1, 3);
+                }
                 string obsah = XMLclanek.GetElementsByTagName("description")[0].InnerText.Trim();
                 obsah = Regex.Replace(obsah, @"\p{C}+", string.Empty);
                 nazev = Regex.Replace(nazev, @"\p{C}+", string.Empty);
@@ -776,6 +769,10 @@ namespace SMS_server
                 obsah = HtmlUtilities.ConvertToPlainText(obsah);
                 nazev = HtmlUtilities.ConvertToPlainText(nazev);
                 string obsah_bezPriloh = obsah.Substring(0, Math.Max(obsah.IndexOf("Attachments:")-1,0));
+                if (obsah.IndexOf("Attachments:") <= 0)
+                {
+                    obsah_bezPriloh = obsah;
+                }
                 obsah = obsah.Replace("Attachments:", string.Empty).Replace("Body:", string.Empty).Replace((char)0xA0,(char)0x20);
                 foreach(KeyValuePair<char, char> pair in charsToReplace)
                 {
@@ -795,21 +792,27 @@ namespace SMS_server
                 string datum = XMLclanek.GetElementsByTagName("pubDate")[0].InnerText.Trim();
                 if (!string.IsNullOrEmpty(GetChecksumForID(Convert.ToInt32(id))))
                 {
-                    if (CalcMD5(obsah_bezPriloh) == GetChecksumForID(Convert.ToInt32(id)) || string.IsNullOrWhiteSpace(obsah_bezPriloh))
+                    if (CalcMD5(obsah_bezPriloh) == GetChecksumForID(Convert.ToInt32(id)))
                     {
                         Log(String.Format("There already is record for article {0} and checksum is same as in RSS feed!", id));
+                    }
+                    else if (string.IsNullOrWhiteSpace(obsah_bezPriloh))
+                    {
+                        Log(String.Format("Article with ID {0} has record, but contains only attachements!", id));
                     }
                     else
                     {
                         Log(String.Format("There already is record for article {0}, but checksums are not equal!", id));
                         int rozdil = CalcLeventhainDist(obsah_bezPriloh, GetContentForID(Convert.ToInt32(id)));
                         float procenta = (float)rozdil / obsah_bezPriloh.Length * 100;
-                        Log(String.Format("Article {0} differs by {1} characters, which is {2}% of string! That is probably not imprtant change, skipping!", id, rozdil, procenta));
                         if (procenta > 30)
                         {
-                            Log(String.Format("Article {0} differs by {1} characters, which is more than 30% of string! Adding to SMS job as updated article!", id, rozdil));
+                            Log(String.Format("Article {0} differs by {1} characters, what is {2}% of string! That is more than 30% of string! Adding to SMS job as updated article!", id, rozdil, procenta));
                             string[] clanekArr = new string[] { id, nazev, autor, obsah, link, datum, "EDIT" };
                             seznamClanku.Add(clanekArr);
+                        } else
+                        {
+                            Log(String.Format("Article {0} differs by {1} characters, what is {2}% of string! That is probably not imprtant change, skipping!", id, rozdil, procenta));
                         }
                         SetValuesForID(Convert.ToInt32(id), obsah_bezPriloh, CalcMD5(obsah_bezPriloh));
                     }
@@ -829,6 +832,7 @@ namespace SMS_server
         static void Main(string[] args)
         {
             Log("--------------------------\r\n-------PROGRAM INIT-------\r\n--------------------------", true);
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             try
             {
                 var parser = new FileIniDataParser();
@@ -897,11 +901,21 @@ namespace SMS_server
                 stopwatch.Reset();
                 stopwatch.Start();
                 CheckForATonCOM(comPort);
-                CheckForNewestXML(feedFName);
                 CheckForNewestXML(teachersFeedFName, true);
+                CheckForNewestXML(feedFName);
                 stopwatch.Stop();
                 System.Threading.Thread.Sleep((int) Math.Max(updateInt - stopwatch.ElapsedMilliseconds,0));
             }
+        }
+
+        static void OnProcessExit(object sender, EventArgs e)
+        {
+            Log("Port deinit...");
+            if (portHandler.IsOpen)
+            {
+                portHandler.Close();
+            }
+            Log("--------------------------\r\n------KONEC APLIKACE------\r\n--------------------------", true);
         }
     }
 }
