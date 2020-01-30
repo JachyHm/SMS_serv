@@ -14,6 +14,7 @@ using System.Data.SQLite;
 using HtmlAgilityPack;
 using System.Net;
 using System.Diagnostics;
+using System.Threading;
 
 namespace SMS_server
 {
@@ -137,6 +138,10 @@ namespace SMS_server
             { (char)0x1F, '"' }
         };
 
+        static private readonly Queue<string> _receivedData = new Queue<string>();         //queue na prijata data z COM
+        static private readonly AutoResetEvent _signalSerial = new AutoResetEvent(false);              //signal na prijata data z COM
+        static private readonly object _lock = new object();                                           //lock queue na data z COM
+
         private static void GetATCOM(Boolean recursive = false)                                 //projdi vsechny comy, posli 'AT' a cekej 500ms na odpoved
         {
             string[] portsList = SerialPort.GetPortNames();             //nacti seznam vsech comPortu
@@ -159,6 +164,8 @@ namespace SMS_server
                             port, 115200, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
                         portHandler.WriteTimeout = 500;
                         portHandler.Open();                             //otevri port
+                        portHandler.DataReceived += new SerialDataReceivedEventHandler(SP_onDataReceived);
+                        portHandler.NewLine = "\r\n";
                     }
 
                     portHandler.Write("AT\r");                          //posli 'AT'
@@ -348,6 +355,21 @@ namespace SMS_server
             }
 
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        static void SP_onDataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string ln = sp.ReadLine();
+            if (!String.IsNullOrWhiteSpace(ln))
+            {
+                lock (_lock)
+                {
+                    _receivedData.Enqueue(ln);
+                }
+
+                _signalSerial.Set();
+            }
         }
 
         static void SendSMSs(List<string[]> newArticles, Boolean isTeacher)                     //vygeneruje a posle SMS s zadanymi newArticles
